@@ -49,18 +49,18 @@ namespace AlcoolGasolina.ViewModels
 
         public bool IsNotBusy { get => !_isBusy; }
 
-        /*protected Application CurrentApplication
+        protected Application CurrentApplication
         {
             get { return Application.Current; }
-        }*/
+        }
 
         #region [ Navegação ]
 
-        protected Task PushAsync(Page page) => Application.Current.MainPage.Navigation.PushAsync(new NavigationPage(new MainPage()));
+        protected Task PushAsync(Page page) => Application.Current.MainPage.Navigation.PushAsync(page);
 
-        protected Task PushModalAsync(Page page) => Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(page));
+        protected Task PushModalAsync(Page page) => Application.Current.MainPage.Navigation.PushModalAsync(page);
 
-        protected void MainPage(Page page) => Application.Current.MainPage = new NavigationPage(page);
+        protected Task MainPage(Page page) => Task.Run(() => Application.Current.MainPage = new NavigationPage(page));
 
         protected Task PopAsync(bool animated = true) => Application.Current.MainPage.Navigation.PopAsync(animated);
 

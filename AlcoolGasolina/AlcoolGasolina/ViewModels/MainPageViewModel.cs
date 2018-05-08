@@ -6,15 +6,15 @@ namespace AlcoolGasolina.ViewModels
     public class MainPageViewModel : ViewModelBase
     {
         public Command CalcularCommand { get; set; }
-        private double _valorAlcool;
-        public double ValorAlcool
+        private string _valorAlcool;
+        public string ValorAlcool
         {
             get { return _valorAlcool; }
             set { SetProperty(ref _valorAlcool, value); }
         }
 
-        private double _valorGasolina;
-        public double ValorGasolina
+        private string _valorGasolina;
+        public string ValorGasolina
         {
             get { return _valorGasolina; }
             set { SetProperty(ref _valorGasolina, value); }
@@ -41,17 +41,24 @@ namespace AlcoolGasolina.ViewModels
 
         private async void ExecuteCalcularCommand()
         {
-            await PushAsync(new Views.MainPage());
-            /*var res = Math.Round((ValorAlcool / ValorGasolina), 2);
-            ValorMedia = "A MÉDIA É DE " + res.ToString();
-            if (res > Convert.ToDouble(0.7))
+            if(string.IsNullOrEmpty(ValorAlcool) || string.IsNullOrEmpty(ValorGasolina))
             {
-                Resposta = "ABASTEÇA COM GASOLINA";
+                await DisplayAlert("Oops", "Preencha todos os campos", "OK");
             }
             else
             {
-                Resposta = "ABASTEÇA COM ÁLCOOL";
-            }*/
+                var res = Math.Round((Convert.ToDouble(ValorAlcool) / Convert.ToDouble(ValorGasolina)), 2);
+                ValorMedia = "A MÉDIA É DE " + res.ToString();
+                if (res > Convert.ToDouble(0.7))
+                {
+                    Resposta = "ABASTEÇA COM GASOLINA";
+                }
+                else
+                {
+                    Resposta = "ABASTEÇA COM ÁLCOOL";
+                }
+            }
+            
         }
     }
 }

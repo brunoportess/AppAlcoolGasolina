@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AlcoolGasolina.Views.RootPage"
+                  Title="Root">
+    <MasterDetailPage.Master>
+        <ContentPage
+            Title="MENU">
+            <ContentPage.Content>
+                <FlexLayout Direction="Column">
+                    <Image Source="icon.png"></Image>
+                    <ListView
+                        Margin="0,20,0,0"
+                        x:Name="listaMenu"
+                        ItemsSource="{Binding ListItensMenu}"
+                        ItemSelected="ListViewMenu_Click"
+                        SeparatorVisibility="None"
+                        HasUnevenRows="true">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ImageCell 
+                                    Command="{Binding Path=BindingContext.NavegarCommand, Source={x:Reference listaMenu}}"
+                                    CommandParameter="{Binding .}" 
+                                    ImageSource="{Binding Image}" Text="{Binding Nome}"></ImageCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </FlexLayout>
+
+            </ContentPage.Content>
+        </ContentPage>
+    </MasterDetailPage.Master>
+</MasterDetailPage>
