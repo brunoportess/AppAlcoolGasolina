@@ -1,5 +1,6 @@
 
 
+using AlcoolGasolina.Views;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -11,7 +12,6 @@ namespace AlcoolGasolina.ViewModels
     public class ViewModelBase : INotifyPropertyChanged
     {
         /*
-         * Metodo BALIVO
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "") =>
@@ -56,9 +56,9 @@ namespace AlcoolGasolina.ViewModels
 
         #region [ Navegação ]
 
-        protected async Task PushAsync(Page page) => await Application.Current.MainPage.Navigation.PushAsync(new NavigationPage(page));
+        protected Task PushAsync(Page page) => Application.Current.MainPage.Navigation.PushAsync(new NavigationPage(new MainPage()));
 
-        protected async Task PushModalAsync(Page page) => await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(page));
+        protected Task PushModalAsync(Page page) => Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(page));
 
         protected void MainPage(Page page) => Application.Current.MainPage = new NavigationPage(page);
 

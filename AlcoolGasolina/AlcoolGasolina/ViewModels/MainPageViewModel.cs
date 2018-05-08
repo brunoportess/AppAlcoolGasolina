@@ -41,7 +41,7 @@ namespace AlcoolGasolina.ViewModels
 
         private async void ExecuteCalcularCommand()
         {
-            await PushAsync(new MainPage());
+            await PushAsync(new Views.MainPage());
             /*var res = Math.Round((ValorAlcool / ValorGasolina), 2);
             ValorMedia = "A MÉDIA É DE " + res.ToString();
             if (res > Convert.ToDouble(0.7))

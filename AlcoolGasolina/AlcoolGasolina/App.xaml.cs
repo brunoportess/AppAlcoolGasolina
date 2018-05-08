@@ -13,7 +13,7 @@ namespace AlcoolGasolina
 		{
 			InitializeComponent();
 
-			MainPage = new AlcoolGasolina.MainPage();
+			MainPage = new AlcoolGasolina.Views.MainPage();
 		}
 
 		protected override void OnStart ()
