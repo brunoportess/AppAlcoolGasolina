@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:AlcoolGasolina"
+             x:Class="AlcoolGasolina.MainPage"
+             Title="Alcool ou gasolina">
+
+    <ContentPage.Content>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" Grid.Row="0" VerticalTextAlignment="Center" Text="Alcool (R$): " FontSize="Medium" />
+            <Entry x:Name="entryAlcool" Text="{Binding ValorAlcool}" Grid.Column="1" Grid.Row="0" Placeholder="0.00" Keyboard="Numeric" />
+
+            <Label Grid.Column="0" Grid.Row="1" VerticalTextAlignment="Center" Text="Gasolina (R$): " FontSize="Medium" />
+            <Entry x:Name="entryGasolina" Text="{Binding ValorGasolina}" Grid.Column="1" Grid.Row="1" Placeholder="0.00" Keyboard="Numeric" />
+
+            <Button x:Name="btnCalcular" Command="{Binding CalcularCommand}" Margin="10,20" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" 
+                Text="CALCULAR" FontAttributes="Bold" BackgroundColor="#00796B" FontSize="Medium" TextColor="White" />
+
+            <Label x:Name="entryValor" Margin="0,30,0,0" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding ValorMedia}" 
+               FontAttributes="Bold" HorizontalTextAlignment="Center" FontSize="Default" TextColor="Black"/>
+
+            <Label x:Name="entryRes" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Text="{Binding Resposta}" 
+               FontAttributes="Bold"  HorizontalTextAlignment="Center" FontSize="Medium" TextColor="Black"/>
+
+
+
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage>
