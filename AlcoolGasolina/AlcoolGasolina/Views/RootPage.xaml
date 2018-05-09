@@ -7,7 +7,7 @@
         <ContentPage
             Title="MENU">
             <ContentPage.Content>
-                <FlexLayout Direction="Column">
+                <FlexLayout Direction="Column" Padding="20">
                     <Image Source="icon.png"></Image>
                     <ListView
                         Margin="0,20,0,0"
@@ -18,10 +18,9 @@
                         HasUnevenRows="true">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <ImageCell 
-                                    Command="{Binding Path=BindingContext.NavegarCommand, Source={x:Reference listaMenu}}"
-                                    CommandParameter="{Binding .}" 
-                                    ImageSource="{Binding Image}" Text="{Binding Nome}"></ImageCell>
+                                <ImageCell  
+                                    ImageSource="{Binding Image}" 
+                                    Text="{Binding Nome}"></ImageCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>

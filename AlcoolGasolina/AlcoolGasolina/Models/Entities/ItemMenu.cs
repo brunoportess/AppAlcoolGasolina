@@ -6,6 +6,6 @@ namespace AlcoolGasolina.Models.Entities
     {
         public string Nome { get; set; }
         public string Image { get; set; }
-        public Page PageUrl { get; set; }
+        public string PageUrl { get; set; }
     }
 }

@@ -15,13 +15,13 @@ namespace AlcoolGasolina.Helpers
                 {
                     Image = "icon.png",
                     Nome = "Calcular",
-                    PageUrl = new MainPage()
+                    PageUrl = "MainPage"
                 },
                 new ItemMenu
                 {
                     Image = "icon.png",
                     Nome = "Postos de combustíveis",
-                    PageUrl = new MainPage()
+                    PageUrl = "Postos"
                 }
 
             };

@@ -1,0 +1,13 @@
+﻿<resources>
+  <!--
+  <color name="primary">#4B7FCB</color>
+  <color name="primaryDark">#234270</color>
+  <color name="accent">#4B7FCB</color>
+  <color name="window_background">#F5F5F5</color>
+  -->
+  <color name="splash_background">#FFFFFF</color>
+  <color name="primary">#009688</color>
+  <color name="primaryDark">#00796B</color>
+  <color name="accent">#4CAF50</color>
+  <color name="window_background">#F5F5F5</color>
+</resources>

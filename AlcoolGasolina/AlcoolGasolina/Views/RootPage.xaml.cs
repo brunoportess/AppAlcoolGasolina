@@ -1,6 +1,6 @@
 ﻿using AlcoolGasolina.Models.Entities;
 using AlcoolGasolina.ViewModels;
-
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -20,7 +20,9 @@ namespace AlcoolGasolina.Views
         private void ListViewMenu_Click(object sender, SelectedItemChangedEventArgs e)
         {
             var item = e.SelectedItem as ItemMenu;
-            Detail = new NavigationPage(item.PageUrl);
+            var pageType = Type.GetType("AlcoolGasolina.Views."+ item.PageUrl);
+            var _page = Activator.CreateInstance(pageType) as Page;
+            Detail = new NavigationPage(_page);
             listaMenu.SelectedItem = null;
             IsPresented = false;
         }
