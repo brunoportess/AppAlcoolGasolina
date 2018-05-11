@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AlcoolGasolina.Views.Combustivel.AbastecerPage"
+             Title="Abastecendo"
+             BackgroundColor="White">
+    <ContentPage.Content>
+        <StackLayout
+            Margin="10">
+            <Label Text="{Binding Data, StringFormat='Data: {0}'}"
+                   FontSize="Large"/>
+            <Entry Text="{Binding Valor}"
+                   Keyboard="Numeric"
+                   FontSize="Large"
+                   Placeholder="R$ 0,00"/>
+            <Button Text="SALVAR" 
+                    Style="{StaticResource buttonStyle}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

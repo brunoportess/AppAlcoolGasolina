@@ -1,13 +1,11 @@
 ﻿using AlcoolGasolina.Helpers;
-using AlcoolGasolina.Models.Entities;
 using AlcoolGasolina.Models.Services;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
 
-namespace AlcoolGasolina.Views
+namespace AlcoolGasolina.Views.Combustivel
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Postos : ContentPage
@@ -49,6 +47,11 @@ namespace AlcoolGasolina.Views
         {
             var myPosition = await Utils.GetLocation();
             MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(myPosition.Latitude, myPosition.Longitude), Distance.FromMeters(600)));
+        }
+
+        private void Button_Clicked(object sender, System.EventArgs e)
+        {
+            Navigation.PushAsync(new AbastecerPage());
         }
     }
 }

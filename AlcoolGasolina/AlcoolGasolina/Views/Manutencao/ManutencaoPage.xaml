@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AlcoolGasolina.Views.Manutencao.ManutencaoPage"
+             Title="Manutenção">
+    <ContentPage.Content>
+        <StackLayout>
+            <Picker Title="Selecione um serviço"
+                x:Name="pickerCidade"
+              ItemsSource="{Binding ListaServicos}"
+              ItemDisplayBinding="{Binding Nome}"
+                TextColor="#f6a001"
+              SelectedItem="{Binding ServicoSelecionado}">
+
+            </Picker>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

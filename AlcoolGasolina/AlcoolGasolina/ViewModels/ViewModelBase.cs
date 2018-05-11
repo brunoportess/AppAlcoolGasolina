@@ -1,6 +1,7 @@
 
 
 using AlcoolGasolina.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -54,9 +55,20 @@ namespace AlcoolGasolina.ViewModels
             get { return Application.Current; }
         }
 
+        protected Page GetPage(string namePage)
+        {
+            var pageType = Type.GetType("AlcoolGasolina.Views." + namePage);
+            var _page = Activator.CreateInstance(pageType) as Page;
+            return _page;
+        }
+
         #region [ Navegação ]
 
         protected Task PushAsync(Page page) => Application.Current.MainPage.Navigation.PushAsync(page);
+        protected Task PushAsync(string page)
+        {
+            return Application.Current.MainPage.Navigation.PushAsync(GetPage(page));
+        }
 
         protected Task PushModalAsync(Page page) => Application.Current.MainPage.Navigation.PushModalAsync(page);
 

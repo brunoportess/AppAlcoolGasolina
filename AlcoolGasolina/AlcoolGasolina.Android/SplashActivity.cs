@@ -16,6 +16,7 @@ namespace AlcoolGasolina.Droid
         {
             base.OnCreate(savedInstanceState, persistentState);
             Log.Debug(TAG, "SplashActivity.OnCreate");
+            
             //StartActivity(new Intent(Application.Context, typeof(MainActivity)));
         }
 

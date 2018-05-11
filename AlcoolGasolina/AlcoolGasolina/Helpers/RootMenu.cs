@@ -15,7 +15,7 @@ namespace AlcoolGasolina.Helpers
                 {
                     Image = "icon.png",
                     Nome = "Calcular",
-                    PageUrl = "MainPage"
+                    PageUrl = "CalcularPage"
                 },
                 new ItemMenu
                 {

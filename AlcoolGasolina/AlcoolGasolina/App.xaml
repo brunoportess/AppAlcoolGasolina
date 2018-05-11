@@ -4,7 +4,38 @@
              x:Class="AlcoolGasolina.App">
 	<Application.Resources>
 
-		<!-- Application resource dictionary -->
+        <ResourceDictionary>
+            <!--
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="#2b2b2b"/>
+                <Setter Property="BarTextColor" Value="#f6a001"/>
+            </Style>
+            -->
 
-	</Application.Resources>
+
+
+            <Style x:Key="buttonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#00796B" />
+                <Setter Property="TextColor" Value="#ffffff" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="Large" />
+            </Style>
+
+            <Style x:Key="entryStyle" TargetType="Entry">
+               
+                <Setter Property="PlaceholderColor" Value="#CCCCCC" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="TextColor" Value="#FFFFFF" />
+
+            </Style>
+
+            <Style x:Key="labelStyle" TargetType="Label">
+                <!-- <Setter Property="BackgroundColor" Value="#E7EFE3" /> -->
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="#f6a001" />
+            </Style>
+        </ResourceDictionary>
+
+    </Application.Resources>
 </Application>

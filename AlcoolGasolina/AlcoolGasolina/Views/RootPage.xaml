@@ -25,7 +25,6 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </FlexLayout>
-
             </ContentPage.Content>
         </ContentPage>
     </MasterDetailPage.Master>
