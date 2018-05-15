@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AlcoolGasolina.Views.Combustivel.AbastecerPage"
-             Title="Abastecendo"
+             Title="Abastecer"
              BackgroundColor="White">
     <ContentPage.Content>
         <StackLayout
@@ -12,8 +12,11 @@
             <Entry Text="{Binding Valor}"
                    Keyboard="Numeric"
                    FontSize="Large"
+                   x:Name="entryValor"
+                   TextChanged="Entry_TextChanged"
                    Placeholder="R$ 0,00"/>
             <Button Text="SALVAR" 
+                    Command="{Binding SalvarCommand}"
                     Style="{StaticResource buttonStyle}"/>
         </StackLayout>
     </ContentPage.Content>

@@ -1,5 +1,4 @@
 ﻿using AlcoolGasolina.Models.Entities;
-using AlcoolGasolina.Views;
 using System.Collections.Generic;
 
 namespace AlcoolGasolina.Helpers

@@ -1,6 +1,4 @@
-
-
-using AlcoolGasolina.Views;
+// Helpers/Settings.cs
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

@@ -1,9 +1,6 @@
 ﻿using AlcoolGasolina.Helpers;
 using AlcoolGasolina.Models.Entities;
-using System;
 using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
 
 namespace AlcoolGasolina.ViewModels
 {

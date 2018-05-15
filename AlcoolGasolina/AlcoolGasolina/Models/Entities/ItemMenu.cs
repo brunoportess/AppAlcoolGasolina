@@ -1,6 +1,4 @@
-﻿using Xamarin.Forms;
-
-namespace AlcoolGasolina.Models.Entities
+﻿namespace AlcoolGasolina.Models.Entities
 {
     public class ItemMenu
     {

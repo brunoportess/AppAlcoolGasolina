@@ -8,7 +8,6 @@
     <ContentPage.Content>
         <FlexLayout Direction="Row" Wrap="Wrap" AlignContent="Start" AlignItems="Start"  JustifyContent="SpaceBetween">
             <Frame BackgroundColor="#009688"
-                   FlexLayout.Grow="0.5"
                    BorderColor="#009688"
                    CornerRadius="15"
                    HasShadow="True"
@@ -31,7 +30,6 @@
             </Frame>
             <Frame BackgroundColor="#009688"
                    BorderColor="#009688"
-                   FlexLayout.Grow="0.5"
                    CornerRadius="15"
                    HeightRequest="100"
                    Margin="10"
@@ -58,14 +56,13 @@
             </Frame>
             <Frame BackgroundColor="#009688"
                    BorderColor="#009688"
-                   FlexLayout.Grow="0.5"
                    CornerRadius="15"
                    HeightRequest="100"
                    Margin="10"
                    Padding="10">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
-                        Command="{Binding NavegarCommand}" CommandParameter="Combustivel.AbastecerPage"/>
+                        Command="{Binding NavegarCommand}" CommandParameter="Combustivel.AbastecerTabbedPage"/>
                 </Frame.GestureRecognizers>
                 <StackLayout 
                     Spacing="0">
