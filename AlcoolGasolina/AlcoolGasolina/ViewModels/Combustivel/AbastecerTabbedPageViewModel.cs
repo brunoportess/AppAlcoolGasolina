@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace AlcoolGasolina.ViewModels.Combustivel
@@ -39,11 +40,10 @@ namespace AlcoolGasolina.ViewModels.Combustivel
             Data = DateTime.Now.ToString("dd/mm/yyyy");
             abastecerHistorico = new AbastecerHistorico();
             SalvarCommand = new Command(ExecuteSalvarCommand);
-            ListHistorico = new ObservableCollection<Abastecer>();
-            Dados();
+            Task.Run(async () => ListHistorico = await Dados());
         }
 
-        private async void Dados()
+        private async Task<ObservableCollection<Abastecer>> Dados()
         {
             var list = new List<Abastecer>();
             try
@@ -56,13 +56,12 @@ namespace AlcoolGasolina.ViewModels.Combustivel
                 Debug.WriteLine("ERROR LIST HISTORICO: " + e.Message);
                 throw;
             }
-            finally
+
+            if (list.Count > 0)
             {
-                if (list.Count > 0)
-                {
-                    ListHistorico = new ObservableCollection<Abastecer>(list);
-                }
+                return new ObservableCollection<Abastecer>(list);
             }
+            return null;
         }
 
         private async void ExecuteSalvarCommand()
@@ -86,9 +85,13 @@ namespace AlcoolGasolina.ViewModels.Combustivel
             finally
             {
                 await DisplayAlert("SUCESSO", "Abastecimento registrado com sucesso", "OK");
+                //Gambiarra pra atualizar a listview
+                //ListHistorico = await Dados();
+                //Abaixo foi tentativa de adicionar o item na listview sem recarregar
                 ListHistorico.Insert(0, obj);
-                OnPropertyChanged("ListHistorico");
+                OnPropertyChanged("ListHistorico");                
             }
+            
         }
     }
 }

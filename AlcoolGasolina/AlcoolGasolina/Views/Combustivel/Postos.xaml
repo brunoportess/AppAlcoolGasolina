@@ -4,6 +4,19 @@
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              x:Class="AlcoolGasolina.Views.Combustivel.Postos"
              Title="Postos próximos">
+    <StackLayout>
+        <ActivityIndicator x:Name="indicator"
+                           IsVisible="True"
+                           IsRunning="True"
+                           HorizontalOptions="Center"
+                           Color="#00796B" />
+        <maps:Map 
+                x:Name="MyMap"
+            IsVisible="False"
+                IsShowingUser="true"
+                MapType="Street"/>
+    </StackLayout>
+    <!--
     <AbsoluteLayout
         HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <StackLayout
@@ -38,4 +51,5 @@
                 Style="{StaticResource buttonStyle}"/>
         </FlexLayout>
     </AbsoluteLayout>
+    -->
 </ContentPage>

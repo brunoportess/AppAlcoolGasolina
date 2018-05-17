@@ -8,26 +8,24 @@ using Xamarin.Forms.Xaml;
 namespace AlcoolGasolina.Views.Combustivel
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class Postos : ContentPage
-	{
-		public Postos ()
-		{
-			InitializeComponent ();
+    public partial class Postos : ContentPage
+    {
+        public Postos()
+        {
+            InitializeComponent();
             SetMapa();
-
         }
 
         private async void SetMapa()
         {
             var restMaps = new RestMaps();
             var listaPostos = await restMaps.GetPostoAsync();
-            if(listaPostos != null)
+            if (listaPostos != null)
             {
                 foreach (var obj in listaPostos.results)
                 {
                     if (obj.geometry.location.lat != 0 && obj.geometry.location.lng != 0)
                     {
-                        MyMap.IsVisible = true;
                         var position = new Position(obj.geometry.location.lat, obj.geometry.location.lng); // Latitude, Longitude
                         var pin = new Pin
                         {
@@ -47,6 +45,9 @@ namespace AlcoolGasolina.Views.Combustivel
         {
             var myPosition = await Utils.GetLocation();
             MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(myPosition.Latitude, myPosition.Longitude), Distance.FromMeters(600)));
+            MyMap.IsVisible = true;
+            indicator.IsVisible = false;
+            indicator.IsRunning = false;
         }
 
         private void Button_Clicked(object sender, System.EventArgs e)

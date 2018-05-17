@@ -10,7 +10,7 @@ namespace AlcoolGasolina
 		{
 
             // Initialize Live Reload.
-            LiveReload.Init();
+            //LiveReload.Init();
 
             InitializeComponent();
 

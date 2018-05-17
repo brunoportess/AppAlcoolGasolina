@@ -4,16 +4,16 @@
              xmlns:local="clr-namespace:AlcoolGasolina"
              x:Class="AlcoolGasolina.Views.MainPage"
              Title="Alcool ou gasolina"
-             BackgroundColor="#ffffff">
+             BackgroundColor="#ffffff"
+             Padding="10">
     <ContentPage.Content>
-        <FlexLayout Direction="Row" Wrap="Wrap" AlignContent="Start" AlignItems="Start"  JustifyContent="SpaceBetween">
+        <StackLayout>
             <Frame BackgroundColor="#009688"
+                   HorizontalOptions="FillAndExpand"
                    BorderColor="#009688"
                    CornerRadius="15"
                    HasShadow="True"
-                   HeightRequest="100"
-                   Margin="10"
-                   Padding="10">
+                   Margin="10">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
                         Command="{Binding NavegarCommand}" CommandParameter="CalcularPage"/>
@@ -31,9 +31,7 @@
             <Frame BackgroundColor="#009688"
                    BorderColor="#009688"
                    CornerRadius="15"
-                   HeightRequest="100"
-                   Margin="10"
-                   Padding="10">
+                   Margin="10">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
                         Command="{Binding NavegarCommand}" CommandParameter="Combustivel.Postos"/>
@@ -41,13 +39,7 @@
                 <StackLayout 
                     Spacing="0">
                     <Image Source="gasStation.png" />
-                    <Label Text="Postos"
-                           
-                           FontSize="Large"
-                           TextColor="White"
-                           FontAttributes="Bold"
-                           HorizontalOptions="Center"/>
-                    <Label Text="próximos"
+                    <Label Text="Postos próximos"
                            FontSize="Large"
                            TextColor="White"
                            FontAttributes="Bold"
@@ -57,9 +49,7 @@
             <Frame BackgroundColor="#009688"
                    BorderColor="#009688"
                    CornerRadius="15"
-                   HeightRequest="100"
-                   Margin="10"
-                   Padding="10">
+                   Margin="10">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
                         Command="{Binding NavegarCommand}" CommandParameter="Combustivel.AbastecerTabbedPage"/>
@@ -74,6 +64,6 @@
                            HorizontalOptions="Center"/>
                 </StackLayout>
             </Frame>
-        </FlexLayout>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

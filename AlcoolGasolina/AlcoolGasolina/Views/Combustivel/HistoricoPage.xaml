@@ -7,10 +7,11 @@
         <ListView
             x:Name="listHistorico"
             CachingStrategy="RecycleElement" 
-            ItemsSource="{Binding ListHistorico}">
+            ItemsSource="{Binding ListHistorico, Mode=TwoWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Valor, StringFormat='VALOR: R$ {0}'}" Detail="{Binding Data, StringFormat='DATA: {0}'}"></TextCell>
+                    <TextCell Text="{Binding Valor, StringFormat='VALOR: R$ {0}'}" 
+                              Detail="{Binding Data, StringFormat='DATA: {0}'}"></TextCell>
                 </DataTemplate>
             </ListView.ItemTemplate>            
         </ListView>
