@@ -83,6 +83,8 @@ namespace AlcoolGasolina.ViewModels
 
         public async Task DisplayAlert(string title, string message, string accept, string cancel) => await Application.Current.MainPage.DisplayAlert(title, message, accept, cancel);
 
+        public async Task<string> DisplayActionSheet(string title, string cancel, string destruction, string[] options) => await Application.Current.MainPage.DisplayActionSheet(title, cancel, destruction, options);
+
         #endregion
     }
 }

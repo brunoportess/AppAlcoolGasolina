@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AlcoolGasolina.Views.CalcularPage"
+             xmlns:local="clr-namespace:AlcoolGasolina.Behaviors;assembly=AlcoolGasolina"
              Title="Calcular custo">
     <ContentPage.Content>
         <Grid Margin="10">
@@ -18,10 +19,18 @@
             </Grid.ColumnDefinitions>
 
             <Label Grid.Column="0" Grid.Row="0" VerticalTextAlignment="Center" Text="Alcool (R$): " FontSize="Medium" />
-            <Entry x:Name="entryAlcool" Text="{Binding ValorAlcool}" Grid.Column="1" Grid.Row="0" Placeholder="0.00" Keyboard="Numeric" />
+            <Entry x:Name="entryAlcool" Text="{Binding ValorAlcool}" Grid.Column="1" Grid.Row="0" Placeholder="0.00" Keyboard="Numeric" >
+                <Entry.Behaviors>
+                    <local:MoneyBehavior />
+                </Entry.Behaviors>
+            </Entry>
 
             <Label Grid.Column="0" Grid.Row="1" VerticalTextAlignment="Center" Text="Gasolina (R$): " FontSize="Medium" />
-            <Entry x:Name="entryGasolina" Text="{Binding ValorGasolina}" Grid.Column="1" Grid.Row="1" Placeholder="0.00" Keyboard="Numeric" />
+            <Entry x:Name="entryGasolina" Text="{Binding ValorGasolina}" Grid.Column="1" Grid.Row="1" Placeholder="0.00" Keyboard="Numeric" >
+                <Entry.Behaviors>
+                    <local:MoneyBehavior />
+                </Entry.Behaviors>
+            </Entry>
 
             <Button x:Name="btnCalcular" 
                     Command="{Binding CalcularCommand}" 

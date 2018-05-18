@@ -10,8 +10,17 @@
             ItemsSource="{Binding ListHistorico, Mode=TwoWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Valor, StringFormat='VALOR: R$ {0}'}" 
-                              Detail="{Binding Data, StringFormat='DATA: {0}'}"></TextCell>
+                    <ViewCell>
+                        <FlexLayout Direction="Column">
+                            <FlexLayout.GestureRecognizers>
+                                <TapGestureRecognizer
+                                        Command="{Binding Path=BindingContext.DelHistoricoCommand, Source={x:Reference listHistorico}}"
+                                        CommandParameter="{Binding .}" />
+                            </FlexLayout.GestureRecognizers>
+                            <Label Text="{Binding Valor, StringFormat='VALOR: R$ {0}'}" />
+                            <Label Text="{Binding Data, StringFormat='DATA: {0}'}" />
+                        </FlexLayout>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>            
         </ListView>

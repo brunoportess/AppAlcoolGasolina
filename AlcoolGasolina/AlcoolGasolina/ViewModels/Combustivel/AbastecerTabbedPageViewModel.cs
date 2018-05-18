@@ -13,6 +13,7 @@ namespace AlcoolGasolina.ViewModels.Combustivel
     {
         private readonly AbastecerHistorico abastecerHistorico;
         public Command SalvarCommand { get; set; }
+        public Command<Abastecer> DelHistoricoCommand { get; set; }
 
         private string _data;
         public string Data
@@ -39,11 +40,29 @@ namespace AlcoolGasolina.ViewModels.Combustivel
         {
             Data = DateTime.Now.ToString("dd/mm/yyyy");
             abastecerHistorico = new AbastecerHistorico();
+            ListHistorico = new ObservableCollection<Abastecer>();
             SalvarCommand = new Command(ExecuteSalvarCommand);
-            Task.Run(async () => ListHistorico = await Dados());
+            DelHistoricoCommand = new Command<Abastecer>(ExecuteDelHistoricoCommand);
+            Dados();
+
         }
 
-        private async Task<ObservableCollection<Abastecer>> Dados()
+        private async void ExecuteDelHistoricoCommand(Abastecer obj)
+        {
+            string res = string.Empty;
+            res = await DisplayActionSheet("Ações", "Cancelar", "", new string[] { "Deletar" });
+            if(!string.IsNullOrEmpty(res))
+            {
+                if (res.Equals("Deletar"))
+                {
+                    await abastecerHistorico.DeleteItemAsync(obj);
+                    ListHistorico.Remove(obj);
+                }
+            }
+        }
+
+        //private async Task<ObservableCollection<Abastecer>> Dados()
+        private async void Dados()
         {
             var list = new List<Abastecer>();
             try
@@ -59,9 +78,10 @@ namespace AlcoolGasolina.ViewModels.Combustivel
 
             if (list.Count > 0)
             {
-                return new ObservableCollection<Abastecer>(list);
+                ListHistorico = new ObservableCollection<Abastecer>(list);
+                //return new ObservableCollection<Abastecer>(list);
             }
-            return null;
+            //return null;
         }
 
         private async void ExecuteSalvarCommand()
@@ -85,13 +105,9 @@ namespace AlcoolGasolina.ViewModels.Combustivel
             finally
             {
                 await DisplayAlert("SUCESSO", "Abastecimento registrado com sucesso", "OK");
-                //Gambiarra pra atualizar a listview
-                //ListHistorico = await Dados();
-                //Abaixo foi tentativa de adicionar o item na listview sem recarregar
                 ListHistorico.Insert(0, obj);
-                OnPropertyChanged("ListHistorico");                
             }
-            
+
         }
     }
 }

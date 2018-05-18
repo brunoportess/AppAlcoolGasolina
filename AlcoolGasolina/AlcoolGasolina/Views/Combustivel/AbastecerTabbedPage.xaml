@@ -4,6 +4,6 @@
             xmlns:local="clr-namespace:AlcoolGasolina.Views.Combustivel;assembly=AlcoolGasolina"
              x:Class="AlcoolGasolina.Views.Combustivel.AbastecerTabbedPage"
             Title="Abastecimento">
-    <local:AbastecerPage />
-    <local:HistoricoPage />
+    <local:AbastecerPage x:Name="abastecer" />
+    <local:HistoricoPage x:Name="historico" />
 </TabbedPage>
