@@ -21,8 +21,8 @@ namespace AlcoolGasolina.Helpers
 
         #region Setting Constants
 
-        private const string GoogleMapsTokenkey = "AIzaSyBbla1DKY6l8d1iZ6JMR5m4gMeda3-8J0I";
-        private static readonly string GoogleMapsTokensDefault = "AIzaSyBbla1DKY6l8d1iZ6JMR5m4gMeda3-8J0I";
+        private const string GoogleMapsTokenkey = "";
+        private static readonly string GoogleMapsTokensDefault = "";
 
         private const string GoogleMapsPlacesUrlkey = "";
         private static readonly string GoogleMapsPlacesUrlDefault = "";
