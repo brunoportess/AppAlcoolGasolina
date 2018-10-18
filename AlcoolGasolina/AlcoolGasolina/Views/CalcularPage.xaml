@@ -55,9 +55,6 @@
                    HorizontalTextAlignment="Center" 
                    FontSize="Medium" 
                    TextColor="Black"/>
-
-
-
         </Grid>
     </ContentPage.Content>
 </ContentPage>
