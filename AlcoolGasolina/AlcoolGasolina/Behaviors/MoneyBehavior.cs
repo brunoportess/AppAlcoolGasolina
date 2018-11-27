@@ -19,10 +19,10 @@ namespace AlcoolGasolina.Behaviors
 
         void OnEntryTextChanged(object sender, TextChangedEventArgs e)
         {
-            if (e.NewTextValue == null || Convert.ToDouble(e.NewTextValue) == Convert.ToDouble(e.OldTextValue) / 100) return;
+           if (string.IsNullOrEmpty(e.NewTextValue) || Convert.ToDouble(e.NewTextValue) == Convert.ToDouble(e.OldTextValue) / 100) return;
+            //if(Convert.ToDouble(e.NewTextValue) == 0) ((Entry)sender).Text = "";
             var valor = Convert.ToDecimal(e.NewTextValue.Replace(".", "").Replace(",", ""));
             valor = valor / 100;
-            //var str = String.Format("{0:#.##}", valor.ToString());
             var str = valor.ToString("n2");
             ((Entry)sender).Text = str;
         }
