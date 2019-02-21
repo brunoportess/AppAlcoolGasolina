@@ -1,6 +1,9 @@
-﻿using Plugin.Geolocator.Abstractions;
+﻿using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
+using Plugin.Geolocator.Abstractions;
 using System;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace AlcoolGasolina.Helpers
 {
@@ -19,6 +22,73 @@ namespace AlcoolGasolina.Helpers
             //Debug.WriteLine("Cidade Atual: " + cidade);
             return position;
             //return restUtils.GetCityName(Plugin.Geolocator.CrossGeolocator.Current.GetPositionAsync);
+        }
+
+        public static async Task<PermissionStatus> CheckPermissions(Permission permission)
+        {
+            var permissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(permission);
+            bool request = false;
+            if (permissionStatus == PermissionStatus.Denied)
+            {
+                if (Device.RuntimePlatform == Device.iOS)
+                {
+
+                    var title = $"Permissão {permission}";
+                    var question = $"Para usar esta aplicação requer permissão de {permission}.";
+                    var positive = "Configurações";
+                    var negative = "Talvez depois";
+                    var task = Application.Current?.MainPage?.DisplayAlert(title, question, positive, negative);
+                    if (task == null)
+                        return permissionStatus;
+
+                    var result = await task;
+                    if (result)
+                    {
+                        await CrossPermissions.Current.RequestPermissionsAsync(permission);
+                        //CrossPermissions.Current.OpenAppSettings();
+                    }
+
+                    return permissionStatus;
+                }
+
+                request = true;
+
+            }
+
+            if (request || permissionStatus != PermissionStatus.Granted)
+            {
+                var newStatus = await CrossPermissions.Current.RequestPermissionsAsync(permission);
+
+                if (!newStatus.ContainsKey(permission))
+                {
+                    return permissionStatus;
+                }
+
+                permissionStatus = newStatus[permission];
+
+                if (newStatus[permission] != PermissionStatus.Granted)
+                {
+                    permissionStatus = newStatus[permission];
+                    var title = $"Permissão {permission}";
+                    var question = $"Para usar esta aplicação requer permissão de {permission}.";
+                    var positive = "Configurações";
+                    var negative = "Talvez depois";
+                    var task = Application.Current?.MainPage?.DisplayAlert(title, question, positive, negative);
+                    if (task == null)
+                        return permissionStatus;
+
+                    var result = await task;
+                    if (result)
+                    {
+                        //await CrossPermissions.Current.RequestPermissionsAsync(permission);
+                        CrossPermissions.Current.OpenAppSettings();
+
+                    }
+                    return permissionStatus;
+                }
+            }
+
+            return permissionStatus;
         }
     }
 }

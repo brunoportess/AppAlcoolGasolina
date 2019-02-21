@@ -5,6 +5,7 @@
              Title="Histórico">
     <ContentPage.Content>
         <ListView
+            Margin="10"
             x:Name="listHistorico"
             CachingStrategy="RecycleElement" 
             ItemsSource="{Binding ListHistorico, Mode=TwoWay}">
