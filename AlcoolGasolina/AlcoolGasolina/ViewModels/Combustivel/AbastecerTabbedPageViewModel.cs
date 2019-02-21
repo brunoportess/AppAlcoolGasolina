@@ -38,7 +38,7 @@ namespace AlcoolGasolina.ViewModels.Combustivel
 
         public AbastecerTabbedPageViewModel() : base()
         {
-            Data = DateTime.Now.ToString("dd/mm/yyyy");
+            Data = DateTime.Now.ToString("dd/MM/yyyy");
             abastecerHistorico = new AbastecerHistorico();
             ListHistorico = new ObservableCollection<Abastecer>();
             SalvarCommand = new Command(ExecuteSalvarCommand);
@@ -88,7 +88,7 @@ namespace AlcoolGasolina.ViewModels.Combustivel
         {
             var obj = new Abastecer
             {
-                Data = DateTime.Now.ToString("dd/mm/yyyy HH:mm"),
+                Data = DateTime.Now.ToString("dd/MM/yyyy HH:mm"),
                 Valor = Convert.ToDouble(Valor)
             };
 

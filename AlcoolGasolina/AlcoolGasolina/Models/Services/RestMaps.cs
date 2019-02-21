@@ -16,7 +16,7 @@ namespace AlcoolGasolina.Models.Services
             var _list = new List<PostoCombustivel>();
             try
             {
-                var myPosition = await Utils.GetLocation();
+                var myPosition = await Utils.GetLastLocation();
                 var _lat = myPosition.Latitude.ToString().Replace(",",".");
                 var _lng = myPosition.Longitude.ToString().Replace(",", ".");
 
