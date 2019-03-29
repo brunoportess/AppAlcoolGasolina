@@ -3,7 +3,8 @@ using Xamarin.Forms;
 
 namespace AlcoolGasolina.ViewModels
 {
-    public class CalcularPageViewModel : ViewModelBase
+    [Xamarin.Forms.Internals.Preserve(AllMembers = true)]
+    public class CalcularViewModel : BaseViewModel
     {
         public Command CalcularCommand { get; set; }
         private string _valorAlcool;
@@ -34,7 +35,7 @@ namespace AlcoolGasolina.ViewModels
             set { SetProperty(ref _resposta, value); }
         }
 
-        public CalcularPageViewModel() : base()
+        public CalcularViewModel()
         {
             CalcularCommand = new Command(ExecuteCalcularCommand);
         }

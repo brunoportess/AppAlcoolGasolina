@@ -12,7 +12,7 @@ namespace AlcoolGasolina.Views
 		public RootPage ()
 		{
 			InitializeComponent ();
-            this.BindingContext = new RootPageViewModel();
+            this.BindingContext = new RootViewModel();
             Detail = new NavigationPage(new CalcularPage());
 
         }

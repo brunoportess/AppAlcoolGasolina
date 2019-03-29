@@ -9,24 +9,18 @@ using Xamarin.Forms;
 
 namespace AlcoolGasolina.ViewModels.Combustivel
 {
-    public class AbastecerTabbedPageViewModel : ViewModelBase
+    [Xamarin.Forms.Internals.Preserve(AllMembers = true)]
+    public class AbastecerTabbedViewModel : BaseViewModel
     {
         private readonly AbastecerHistorico abastecerHistorico;
         public Command SalvarCommand { get; set; }
         public Command<Abastecer> DelHistoricoCommand { get; set; }
 
-        private string _data;
-        public string Data
+        private Abastecer _abastecimento;
+        public Abastecer Abastecimento
         {
-            get { return _data; }
-            set { SetProperty(ref _data, value); }
-        }
-
-        private string _valor;
-        public string Valor
-        {
-            get { return _valor; }
-            set { SetProperty(ref _valor, value); }
+            get { return _abastecimento; }
+            set { SetProperty(ref _abastecimento, value); }
         }
 
         private ObservableCollection<Abastecer> _listHistorico;
@@ -36,15 +30,25 @@ namespace AlcoolGasolina.ViewModels.Combustivel
             set { SetProperty(ref _listHistorico, value); }
         }
 
-        public AbastecerTabbedPageViewModel() : base()
+        public AbastecerTabbedViewModel()
         {
-            Data = DateTime.Now.ToString("dd/MM/yyyy");
+            Abastecimento = new Abastecer
+            {
+                Data = DateTime.Now.ToString("dd/MM/yyyy")
+            };
             abastecerHistorico = new AbastecerHistorico();
             ListHistorico = new ObservableCollection<Abastecer>();
             SalvarCommand = new Command(ExecuteSalvarCommand);
             DelHistoricoCommand = new Command<Abastecer>(ExecuteDelHistoricoCommand);
-            Dados();
+        }
 
+        public override Task InitializeAsync(object[] args)
+        {
+            Task.Run(async() => {
+                await abastecerHistorico.Initialize();
+                await Dados();
+            });
+            return base.InitializeAsync(args);
         }
 
         private async void ExecuteDelHistoricoCommand(Abastecer obj)
@@ -62,18 +66,18 @@ namespace AlcoolGasolina.ViewModels.Combustivel
         }
 
         //private async Task<ObservableCollection<Abastecer>> Dados()
-        private async void Dados()
+        private async Task Dados()
         {
             var list = new List<Abastecer>();
             try
             {
-                await abastecerHistorico.Initialize();
                 list = await abastecerHistorico.GetItemsAsync();
             }
             catch (Exception e)
             {
                 Debug.WriteLine("ERROR LIST HISTORICO: " + e.Message);
-                throw;
+                //throw;
+                ListHistorico = new ObservableCollection<Abastecer>();
             }
 
             if (list.Count > 0)
@@ -86,16 +90,11 @@ namespace AlcoolGasolina.ViewModels.Combustivel
 
         private async void ExecuteSalvarCommand()
         {
-            var obj = new Abastecer
-            {
-                Data = DateTime.Now.ToString("dd/MM/yyyy HH:mm"),
-                Valor = Convert.ToDouble(Valor)
-            };
-
+            
+            Debug.WriteLine($"ABASTECIMENTO: {Abastecimento}");
             try
             {
-                await abastecerHistorico.Initialize();
-                await abastecerHistorico.SaveItemAsync(obj);
+                await abastecerHistorico.SaveItemAsync(Abastecimento);
             }
             catch (Exception ex)
             {
@@ -105,7 +104,7 @@ namespace AlcoolGasolina.ViewModels.Combustivel
             finally
             {
                 await DisplayAlert("SUCESSO", "Abastecimento registrado com sucesso", "OK");
-                ListHistorico.Insert(0, obj);
+                ListHistorico.Insert(0, Abastecimento);
             }
 
         }

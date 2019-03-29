@@ -6,22 +6,47 @@
              Title="Abastecer"
              BackgroundColor="White">
     <ContentPage.Content>
-        <StackLayout
+        <FlexLayout Direction="Column"
             Margin="10">
-            <Label Text="{Binding Data, StringFormat='Data: {0}'}"
-                   FontSize="Large"/>
-            <Entry Text="{Binding Valor}"
+            <Label Text="{Binding Abastecimento.Data, StringFormat='Data: {0}'}"
+                   FontSize="Medium"/>
+
+            <Label Text="Tipo de combustível" Style="{StaticResource labelStyle}"
+                   Margin="0,0,0,-5"/>
+            <Picker 
+                VerticalOptions="End" 
+                Title="Tipo de Combustível"                 
+                SelectedItem="{Binding Abastecimento.Combustivel}">
+                <Picker.Items>
+                    <x:String>Álcool</x:String>
+                    <x:String>Gasolina</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Label Text="Valor do litro" Style="{StaticResource labelStyle}"
+                   Margin="0,0,0,-5"/>
+            <Entry Text="{Binding Abastecimento.ValorLitro}"
                    Keyboard="Numeric"
-                   FontSize="Large"
-                   x:Name="entryValor"
-                   Placeholder="R$ 0,00">
+                   Placeholder="Valor do Litro">
                 <Entry.Behaviors>
                     <local:MoneyBehavior />
                 </Entry.Behaviors>
             </Entry>
+
+            <Label Text="Valor abastecido" Style="{StaticResource labelStyle}" 
+                   Margin="0,0,0,-5"/>
+            <Entry Text="{Binding Abastecimento.Valor}"
+                   Keyboard="Numeric"
+                   x:Name="entryValor"
+                   Placeholder="Valor Abastecido">
+                <Entry.Behaviors>
+                    <local:MoneyBehavior />
+                </Entry.Behaviors>
+            </Entry>
+            
             <Button Text="SALVAR" 
                     Command="{Binding SalvarCommand}"
                     Style="{StaticResource buttonStyle}"/>
-        </StackLayout>
+        </FlexLayout>
     </ContentPage.Content>
 </ContentPage>

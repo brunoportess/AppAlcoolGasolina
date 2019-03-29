@@ -1,12 +1,7 @@
-﻿
-using Android;
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using Android.Runtime;
-using Android.Widget;
 using Plugin.Permissions;
-using System.Threading.Tasks;
 
 namespace AlcoolGasolina.Droid
 {
@@ -18,18 +13,17 @@ namespace AlcoolGasolina.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-            base.OnCreate(bundle);            
-            
+            base.OnCreate(bundle);
+
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            //global::Xamarin.Forms.FormsMaterial.Init(this, bundle);
             Xamarin.FormsMaps.Init(this, bundle);
             LoadApplication(new App());
         }
 
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
-
             PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }

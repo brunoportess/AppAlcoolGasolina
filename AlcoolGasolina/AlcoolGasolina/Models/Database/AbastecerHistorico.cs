@@ -1,14 +1,11 @@
-﻿using AlcoolGasolina.Helpers;
-using AlcoolGasolina.Models.Entities;
+﻿using AlcoolGasolina.Models.Entities;
 using SQLite;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace AlcoolGasolina.Models.Database
 {
+    [Xamarin.Forms.Internals.Preserve(AllMembers = true)]
     public class AbastecerHistorico
     {
         private SQLiteAsyncConnection database;
@@ -19,7 +16,7 @@ namespace AlcoolGasolina.Models.Database
 
         public async Task Initialize()
         {
-            database = new SQLiteAsyncConnection(DependencyService.Get<IFileHelper>().GetLocalFilePath("TodoSQLite.db3"));
+            database = new SQLiteAsyncConnection(App.DatabasePath);
             await database.CreateTableAsync<Abastecer>();
 
         }

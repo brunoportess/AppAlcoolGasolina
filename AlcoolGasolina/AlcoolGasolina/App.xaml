@@ -22,18 +22,26 @@
             </Style>
 
             <Style x:Key="entryStyle" TargetType="Entry">
-               
-                <Setter Property="PlaceholderColor" Value="#CCCCCC" />
-                <Setter Property="BackgroundColor" Value="Transparent" />
-                <Setter Property="TextColor" Value="#FFFFFF" />
+                <Setter Property="TextColor" Value="#000000" />
+            </Style>
 
+            <Style x:Key="entryMaterialStyle" TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="#EEEEEE" />
+                <Setter Property="TextColor" Value="#000000" />
+                <Setter Property="Margin" Value="0,10,0,10" />
+            </Style>
+
+            <Style x:Key="pickerMaterialStyle" TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="#EEEEEE" />
+                <Setter Property="TextColor" Value="#000000" />
+                <Setter Property="Margin" Value="0,10,0,10" />
             </Style>
 
             <Style x:Key="labelStyle" TargetType="Label">
                 <!-- <Setter Property="BackgroundColor" Value="#E7EFE3" /> -->
                 <Setter Property="FontSize" Value="Medium" />
                 <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="TextColor" Value="#f6a001" />
+                <Setter Property="TextColor" Value="#000000" />
             </Style>
         </ResourceDictionary>
 

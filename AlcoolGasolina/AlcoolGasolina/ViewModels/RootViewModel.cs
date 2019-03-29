@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace AlcoolGasolina.ViewModels
 {
-    public class RootPageViewModel :ViewModelBase
+    public class RootViewModel :BaseViewModel
     {
         private List<ItemMenu> _listItensMenu;
         public List<ItemMenu> ListItensMenu
@@ -13,7 +13,7 @@ namespace AlcoolGasolina.ViewModels
             set { SetProperty(ref _listItensMenu, value); }
         }
 
-        public RootPageViewModel() : base()
+        public RootViewModel() : base()
         {
             RootListGenerate();
         }

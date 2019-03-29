@@ -8,9 +8,10 @@ using Xamarin.Forms.Xaml;
 namespace AlcoolGasolina.Views.Combustivel
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Postos : ContentPage
+    [Xamarin.Forms.Internals.Preserve(AllMembers = true)]
+    public partial class PostosPage : ContentPage
     {
-        public Postos()
+        public PostosPage()
         {
             InitializeComponent();
             SetMapa();

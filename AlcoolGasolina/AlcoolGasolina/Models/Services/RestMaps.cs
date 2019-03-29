@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace AlcoolGasolina.Models.Services
 {
+    [Xamarin.Forms.Internals.Preserve(AllMembers = true)]
     public class RestMaps
     {
         public async Task<PostoCombustivel> GetPostoAsync()
@@ -41,7 +42,7 @@ namespace AlcoolGasolina.Models.Services
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                Debug.WriteLine("RestMap error: " + ex.Message);
                 return null;
             }
         }

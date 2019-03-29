@@ -1,10 +1,10 @@
 ﻿namespace AlcoolGasolina.ViewModels.Manutencao
 {
-    public class ManutencaoPageViewModel : ViewModelBase
+    public class ManutencaoViewModel : BaseViewModel
     {
         
 
-        public ManutencaoPageViewModel() : base()
+        public ManutencaoViewModel() : base()
         {
             
         }

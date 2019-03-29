@@ -8,19 +8,53 @@
             Margin="10"
             x:Name="listHistorico"
             CachingStrategy="RecycleElement" 
+            SeparatorVisibility="None"
+            HasUnevenRows="True"
             ItemsSource="{Binding ListHistorico, Mode=TwoWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <FlexLayout Direction="Column">
-                            <FlexLayout.GestureRecognizers>
-                                <TapGestureRecognizer
+                        <Frame CornerRadius="15" HasShadow="True" Padding="5" Margin="5">
+                            <FlexLayout Direction="Column">
+                                <FlexLayout.GestureRecognizers>
+                                    <TapGestureRecognizer
                                         Command="{Binding Path=BindingContext.DelHistoricoCommand, Source={x:Reference listHistorico}}"
                                         CommandParameter="{Binding .}" />
-                            </FlexLayout.GestureRecognizers>
-                            <Label Text="{Binding Valor, StringFormat='VALOR: R$ {0}'}" />
-                            <Label Text="{Binding Data, StringFormat='DATA: {0}'}" />
-                        </FlexLayout>
+                                </FlexLayout.GestureRecognizers>
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="DATA: " FontAttributes="Bold" />
+                                            <Span Text="{Binding Data}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="COMBUSTÍVEL: " FontAttributes="Bold" />
+                                            <Span Text="{Binding Combustivel}"  />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Valor (L): " FontAttributes="Bold" />
+                                            <Span Text="{Binding ValorLitro, StringFormat='R${0}'}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="VALOR ABASTECIDO: " FontAttributes="Bold" />
+                                            <Span Text="{Binding Valor, StringFormat='R${0}'}"  />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </FlexLayout>
+                        </Frame>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>            

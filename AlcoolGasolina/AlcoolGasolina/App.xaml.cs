@@ -6,7 +6,9 @@ namespace AlcoolGasolina
 {
     public partial class App : Application
 	{
-		public App ()
+        public static string DatabasePath => System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData), "TodoSQLite.db3");
+
+        public App ()
 		{
 
             // Initialize Live Reload.
@@ -14,9 +16,12 @@ namespace AlcoolGasolina
 
             InitializeComponent();
 
-			MainPage = new NavigationPage(new MainPage());
-			//MainPage = new MainPage();
-		}
+			MainPage = new NavigationPage(new MainPage()
+            {
+                BindingContext = new ViewModels.MainViewModel()
+            });
+            //MainPage = new MainPage();
+        }
 
 		protected override void OnStart ()
 		{
