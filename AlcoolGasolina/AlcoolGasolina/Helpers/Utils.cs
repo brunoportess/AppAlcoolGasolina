@@ -1,10 +1,13 @@
-﻿using Plugin.Geolocator.Abstractions;
+﻿using Microsoft.AppCenter.Crashes;
+using Newtonsoft.Json;
+using Plugin.Geolocator.Abstractions;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using System;
 using System.Diagnostics;
+using System.Globalization;
+using System.Net.Http;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace AlcoolGasolina.Helpers
 {
@@ -27,7 +30,8 @@ namespace AlcoolGasolina.Helpers
 
         public static async Task<Position> GetLastLocation()
         {
-            var position = new Position();
+            _ = new Position();
+            Position position;
             try
             {
                 //pega a posicao do usuario com o plugin do james
@@ -41,6 +45,7 @@ namespace AlcoolGasolina.Helpers
             {
 
                 Debug.WriteLine($"ERROR GET LAST LOCATION: {e.Message}");
+                Crashes.TrackError(e);
                 return null;
             }
             return position;
@@ -48,94 +53,16 @@ namespace AlcoolGasolina.Helpers
 
         public static async Task<PermissionStatus> CheckPermissions(Permission permission)
         {
-            var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+            var status = await CrossPermissions.Current.CheckPermissionStatusAsync(permission);
             if (status != PermissionStatus.Granted)
             {
-                var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Location);
+                var results = await CrossPermissions.Current.RequestPermissionsAsync(permission);
                 //Best practice to always check that the key exists
                 if (results.ContainsKey(Permission.Location))
                     status = results[Permission.Location];
             }
 
             return status;
-            /* var permissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(permission);
-             if (permissionStatus != PermissionStatus.Granted)
-             {
-                 if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(permission))
-                 {
-                     await App.Current.MainPage.DisplayAlert("Need location", "Gunna need that location", "OK");
-                 }
-
-                 var results = await CrossPermissions.Current.RequestPermissionsAsync(permission);
-                 //Best practice to always check that the key exists
-                 if (results.ContainsKey(permission))
-                     permissionStatus = results[permission];
-             }
-
-             return permissionStatus;
-             */
-            /*bool request = false;
-            if (permissionStatus == PermissionStatus.Denied)
-            {
-                if (Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.iOS)
-                {
-
-                    var title = $"Permissão {permission}";
-                    var question = $"Para usar esta aplicação requer permissão de {permission}.";
-                    var positive = "Configurações";
-                    var negative = "Talvez depois";
-                    var task = Application.Current?.MainPage?.DisplayAlert(title, question, positive, negative);
-                    if (task == null)
-                        return permissionStatus;
-
-                    var result = await task;
-                    if (result)
-                    {
-                        await CrossPermissions.Current.RequestPermissionsAsync(permission);
-                        //CrossPermissions.Current.OpenAppSettings();
-                    }
-
-                    return permissionStatus;
-                }
-
-                request = true;
-
-            }
-
-            if (request || permissionStatus != PermissionStatus.Granted)
-            {
-                var newStatus = await CrossPermissions.Current.RequestPermissionsAsync(permission);
-
-                if (!newStatus.ContainsKey(permission))
-                {
-                    return permissionStatus;
-                }
-
-                permissionStatus = newStatus[permission];
-
-                if (newStatus[permission] != PermissionStatus.Granted)
-                {
-                    permissionStatus = newStatus[permission];
-                    var title = $"Permissão {permission}";
-                    var question = $"Para usar esta aplicação requer permissão de {permission}.";
-                    var positive = "Configurações";
-                    var negative = "Talvez depois";
-                    var task = Application.Current?.MainPage?.DisplayAlert(title, question, positive, negative);
-                    if (task == null)
-                        return permissionStatus;
-
-                    var result = await task;
-                    if (result)
-                    {
-                        //await CrossPermissions.Current.RequestPermissionsAsync(permission);
-                        CrossPermissions.Current.OpenAppSettings();
-
-                    }
-                    return permissionStatus;
-                }
-            }
-
-            return permissionStatus;*/
         }
 
         public static async Task GetPermissionLocation()
@@ -147,7 +74,7 @@ namespace AlcoolGasolina.Helpers
                 var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Location);
                 //Best practice to always check that the key exists
                 if (results.ContainsKey(Permission.Location))
-                    status = results[Permission.Location];
+                    _ = results[Permission.Location];
             }
         }
 
@@ -160,7 +87,58 @@ namespace AlcoolGasolina.Helpers
                 var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Storage);
                 //Best practice to always check that the key exists
                 if (results.ContainsKey(Permission.Storage))
-                    status = results[Permission.Storage];
+                    _ = results[Permission.Storage];
+            }
+        }
+
+        public static string Distance(string lat01, string long01, string lat02, string long02)
+        {
+            if (string.IsNullOrEmpty(lat01) || string.IsNullOrEmpty(long01) || string.IsNullOrEmpty(lat02) || string.IsNullOrEmpty(long02)) return null;
+            var lat1 = Convert.ToDouble(lat01.Replace(".", ","), new CultureInfo("pt-BR"));
+            var lon1 = Convert.ToDouble(long01.Replace(".", ","), new CultureInfo("pt-BR"));
+            var lat2 = Convert.ToDouble(lat02.Replace(".", ","), new CultureInfo("pt-BR"));
+            var lon2 = Convert.ToDouble(long02.Replace(".", ","), new CultureInfo("pt-BR"));
+
+            double rlat1 = Math.PI * lat1 / 180;
+            double rlat2 = Math.PI * lat2 / 180;
+            double theta = lon1 - lon2;
+            double rtheta = Math.PI * theta / 180;
+            double dist =
+                Math.Sin(rlat1) * Math.Sin(rlat2) + Math.Cos(rlat1) *
+                Math.Cos(rlat2) * Math.Cos(rtheta);
+            dist = Math.Acos(dist);
+            dist = dist * 180 / Math.PI;
+            dist = dist * 60 * 1.1515;
+            var distancia = Convert.ToDouble(dist * 1.609344, new CultureInfo("pt-BR"));
+
+            string GatoLouco = distancia.ToString("N3").Replace(",", "").Replace(".", "");
+
+            distancia = double.Parse(GatoLouco) / 1000.00 * 1.837979094076655;
+
+            return distancia.ToString("N3") + " km";
+        }
+
+        public static async Task<string> GetCityName(Position location)
+        {
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    var latitude = location.Latitude.ToString().Replace(",", ".");
+                    var longitude = location.Longitude.ToString().Replace(",", ".");
+                    client.Timeout = TimeSpan.FromMilliseconds(3000);
+                    var result = await client.GetAsync("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&key=" + Settings.GoogleMapsToken);
+                    if (!result.IsSuccessStatusCode) return null;
+                    var resultContent = await result.Content.ReadAsStringAsync();
+                    var result1 = JsonConvert.DeserializeObject<dynamic>(resultContent);
+                    var res = result1.results[0].address_components[3].long_name;
+                    return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return null;
             }
         }
     }

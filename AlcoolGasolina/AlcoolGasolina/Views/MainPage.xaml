@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AlcoolGasolina.Views.MainPage"
              BackgroundColor="#ffffff"
+             xmlns:translator="clr-namespace:AlcoolGasolina.Helpers"
              Padding="10">
     <NavigationPage.TitleView>
-        <Label Text="Álcool x Gasolina" FontSize="Large" TextColor="#FFFFFF" HorizontalTextAlignment="Center" />
+        <Label Text="{translator:Translate Title}" 
+               FontSize="Large" TextColor="#FFFFFF" HorizontalTextAlignment="Center" />
     </NavigationPage.TitleView>
     <ContentPage.Content>
         <FlexLayout Direction="Column" x:Name="stackLayoutPage">
@@ -22,7 +24,7 @@
                 <StackLayout
                     VerticalOptions="Center">
                     <Image Source="calculator.png" />
-                    <Label Text="Calcular"
+                    <Label Text="{translator:Translate Calculate}"
                             FontSize="Large"
                             FontAttributes="Bold"
                            TextColor="White"
@@ -41,7 +43,7 @@
                 <StackLayout 
                     Spacing="0">
                     <Image Source="gasStation.png" />
-                    <Label Text="Postos próximos"
+                    <Label Text="{translator:Translate GasStation}"
                            FontSize="Large"
                            TextColor="White"
                            FontAttributes="Bold"
@@ -60,7 +62,7 @@
                 <StackLayout 
                     Spacing="0">
                     <Image Source="gasStation.png" />
-                    <Label Text="Abastecer"
+                    <Label Text="{translator:Translate Fuel}"
                            FontSize="Large"
                            TextColor="White"
                            FontAttributes="Bold"

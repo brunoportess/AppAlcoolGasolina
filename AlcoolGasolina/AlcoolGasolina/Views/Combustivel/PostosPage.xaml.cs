@@ -50,7 +50,19 @@ namespace AlcoolGasolina.Views.Combustivel
             MyMap.IsVisible = true;
             indicator.IsVisible = false;
             indicator.IsRunning = false;
-            Microsoft.AppCenter.Analytics.Analytics.TrackEvent("Abriu o mapa");
+            var cidade = await Utils.GetCityName(myPosition);
+            if(string.IsNullOrEmpty(cidade))
+            {
+                Microsoft.AppCenter.Analytics.Analytics.TrackEvent("Abriu o mapa");
+            } else
+            {
+                Microsoft.AppCenter.Analytics.Analytics.TrackEvent("Abriu o mapa", new Dictionary<string, string>
+                {
+                    {
+                        "Cidade", cidade
+                    }
+                });
+            }
         }
 
         private void Button_Clicked(object sender, System.EventArgs e)

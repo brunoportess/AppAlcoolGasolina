@@ -17,8 +17,8 @@ namespace AlcoolGasolina
             //LiveReload.Init();
 
             InitializeComponent();
-
-			MainPage = new NavigationPage(new MainPage()
+            AppResources.Culture = Plugin.Multilingual.CrossMultilingual.Current.DeviceCultureInfo;
+            MainPage = new NavigationPage(new MainPage()
             {
                 BindingContext = new ViewModels.MainViewModel()
             });
