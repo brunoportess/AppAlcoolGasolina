@@ -3,7 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:local="clr-namespace:AlcoolGasolina.Views.Combustivel;assembly=AlcoolGasolina"
              x:Class="AlcoolGasolina.Views.Combustivel.AbastecerTabbedPage"
-            Title="Abastecimento">
-    <local:AbastecerPage x:Name="abastecer" />
-    <local:HistoricoPage x:Name="historico" />
+            Title="Abastecimento"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             android:TabbedPage.ToolbarPlacement="Bottom"
+            android:TabbedPage.BarItemColor="#00796B"
+             android:TabbedPage.BarSelectedItemColor="#FFFFFF"
+            BackgroundColor="#009688"
+            >
+    <local:AbastecerPage x:Name="abastecer" Title="Abastecer" Icon="baseline_local_gas_station_white_48.png"/>
+    <local:HistoricoPage x:Name="historico" Title="Histórico" Icon="baseline_history_white_48.png" />
 </TabbedPage>

@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AlcoolGasolina.Views.Combustivel.AbastecerPage"
              xmlns:local="clr-namespace:AlcoolGasolina.Behaviors;assembly=AlcoolGasolina"
-             Title="Abastecer"
              BackgroundColor="White">
     <ContentPage.Content>
         <FlexLayout Direction="Column"
@@ -11,8 +10,14 @@
             <Label Text="{Binding Abastecimento.Data, StringFormat='Data: {0}'}"
                    FontSize="Medium"/>
 
-            <Label Text="Tipo de combustível" Style="{StaticResource labelStyle}"
-                   Margin="0,0,0,-5"/>
+            <Label Text="Tipo de combustível" Style="{StaticResource labelStyle}">
+                <Label.Margin>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS" Value="0,0,0,5" />
+                        <On Platform="Android" Value="0" />
+                    </OnPlatform>
+                </Label.Margin>
+            </Label>
             <Picker 
                 VerticalOptions="End" 
                 Title="Tipo de Combustível"                 
@@ -23,8 +28,14 @@
                 </Picker.Items>
             </Picker>
 
-            <Label Text="Valor do litro" Style="{StaticResource labelStyle}"
-                   Margin="0,0,0,-5"/>
+            <Label Text="Valor do litro" Style="{StaticResource labelStyle}">
+                <Label.Margin>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS" Value="0,10,0,5" />
+                        <On Platform="Android" Value="0,10,0,0" />
+                    </OnPlatform>
+                </Label.Margin>
+            </Label>
             <Entry Text="{Binding Abastecimento.ValorLitro}"
                    Keyboard="Numeric"
                    Placeholder="Valor do Litro">
@@ -33,8 +44,14 @@
                 </Entry.Behaviors>
             </Entry>
 
-            <Label Text="Valor abastecido" Style="{StaticResource labelStyle}" 
-                   Margin="0,0,0,-5"/>
+            <Label Text="Valor abastecido" Style="{StaticResource labelStyle}" >
+                <Label.Margin>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS" Value="0,10,0,5" />
+                        <On Platform="Android" Value="0,10,0,0" />
+                    </OnPlatform>
+                </Label.Margin>
+            </Label>
             <Entry Text="{Binding Abastecimento.Valor}"
                    Keyboard="Numeric"
                    x:Name="entryValor"
@@ -46,7 +63,8 @@
             
             <Button Text="SALVAR" 
                     Command="{Binding SalvarCommand}"
-                    Style="{StaticResource buttonStyle}"/>
+                    Style="{StaticResource buttonStyle}"
+                    Margin="0,20,0,0"/>
         </FlexLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -8,7 +8,7 @@ namespace AlcoolGasolina.Views.Combustivel
     [Xamarin.Forms.Internals.Preserve(AllMembers = true)]
     public partial class AbastecerTabbedPage : TabbedPage
     {
-        AbastecerTabbedViewModel _vm;
+        readonly AbastecerTabbedViewModel _vm;
         public AbastecerTabbedPage ()
         {
             InitializeComponent();

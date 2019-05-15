@@ -18,11 +18,9 @@ namespace AlcoolGasolina.ViewModels
         {
             if(page.Equals("Combustivel.Postos") || page.Equals("Combustivel.AbastecerTabbedPage"))
             {
-                var status = PermissionStatus.Unknown;
-
                 if (page.Equals("Combustivel.Postos"))
                 {
-                    status = await Utils.CheckPermissions(Permission.Location);
+                    PermissionStatus status = await Utils.CheckPermissions(Permission.Location);
                     if (status != PermissionStatus.Granted)
                     {
                         await DisplayAlert("Permissão Negada", "É necessário a permissão para utilizar esta função", "OK");

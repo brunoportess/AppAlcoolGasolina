@@ -9,7 +9,6 @@ namespace AlcoolGasolina.Views
 		public MainPage()
 		{
 			InitializeComponent();
-
         }
 	}
 }

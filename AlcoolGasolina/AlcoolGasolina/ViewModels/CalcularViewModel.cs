@@ -42,6 +42,7 @@ namespace AlcoolGasolina.ViewModels
 
         private async void ExecuteCalcularCommand()
         {
+            Microsoft.AppCenter.Analytics.Analytics.TrackEvent("Calculou combustivel");
             if (string.IsNullOrEmpty(ValorAlcool) || string.IsNullOrEmpty(ValorGasolina))
             {
                 await DisplayAlert("Oops", "Preencha todos os campos", "OK");

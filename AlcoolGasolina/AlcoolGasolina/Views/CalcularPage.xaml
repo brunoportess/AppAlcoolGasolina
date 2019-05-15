@@ -5,29 +5,43 @@
              xmlns:local="clr-namespace:AlcoolGasolina.Behaviors;assembly=AlcoolGasolina"
              Title="Calcular custo">
     <ContentPage.Content>
-        <FlexLayout Direction="Column" Margin="10">
-            <Label Text="Preço do álcool" Style="{StaticResource labelStyle}"
-                   Margin="0,0,0,-5"/>
+        <FlexLayout x:Name="flexteste" Direction="Column" Margin="10">
+            <Label Text="Preço do álcool" Style="{StaticResource labelStyle}">
+                <Label.Margin>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS" Value="0,0,0,5" />
+                        <On Platform="Android" Value="0" />
+                    </OnPlatform>
+                </Label.Margin>
+            </Label>
             <Entry x:Name="entryAlcool" Text="{Binding ValorAlcool}" Placeholder="R$ 0,00" Keyboard="Numeric" >
                 <Entry.Behaviors>
                     <local:MoneyBehavior />
                 </Entry.Behaviors>
             </Entry>
 
-            <Label Text="Preço da gasolina" Style="{StaticResource labelStyle}"
-                   Margin="0,0,0,-5"/>
-            <Entry x:Name="entryGasolina" Text="{Binding ValorGasolina}" Placeholder="R$ 0,00" Keyboard="Numeric">
+            <Label  Text="Preço da gasolina" 
+                   Style="{StaticResource labelStyle}">
+                <Label.Margin>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS" Value="0,10,0,5" />
+                        <On Platform="Android" Value="0,10,0,0" />
+                    </OnPlatform>
+                </Label.Margin>
+            </Label>
+            <Entry x:Name="entryGasolina" Text="{Binding ValorGasolina}" 
+                   Placeholder="R$ 0,00" Keyboard="Numeric">
                 <Entry.Behaviors>
                     <local:MoneyBehavior />
                 </Entry.Behaviors>
             </Entry>
 
             <Button x:Name="btnCalcular" 
-                    Command="{Binding CalcularCommand}" 
-                    Margin="10,20" 
+                    Command="{Binding CalcularCommand}"
                     Image="bomba.png"
                     Text="CALCULAR" 
-                    Style="{StaticResource buttonStyle}"/>
+                    Style="{StaticResource buttonStyle}"
+                    Margin="0,20,0,0"/>
 
             <Label x:Name="entryValor" 
                    Margin="0,30,0,0" 

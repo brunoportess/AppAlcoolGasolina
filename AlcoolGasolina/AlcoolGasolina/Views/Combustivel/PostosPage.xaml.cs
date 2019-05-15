@@ -1,5 +1,6 @@
 ﻿using AlcoolGasolina.Helpers;
 using AlcoolGasolina.Models.Services;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
@@ -49,6 +50,7 @@ namespace AlcoolGasolina.Views.Combustivel
             MyMap.IsVisible = true;
             indicator.IsVisible = false;
             indicator.IsRunning = false;
+            Microsoft.AppCenter.Analytics.Analytics.TrackEvent("Abriu o mapa");
         }
 
         private void Button_Clicked(object sender, System.EventArgs e)

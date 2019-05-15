@@ -12,7 +12,7 @@
                            Color="#00796B" />
         <maps:Map 
                 x:Name="MyMap"
-            IsVisible="False"
+                IsVisible="False"
                 IsShowingUser="true"
                 MapType="Street"/>
     </StackLayout>

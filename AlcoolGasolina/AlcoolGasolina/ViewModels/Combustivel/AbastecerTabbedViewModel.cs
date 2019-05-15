@@ -1,5 +1,6 @@
 ﻿using AlcoolGasolina.Models.Database;
 using AlcoolGasolina.Models.Entities;
+using Microsoft.AppCenter.Crashes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -53,9 +54,8 @@ namespace AlcoolGasolina.ViewModels.Combustivel
 
         private async void ExecuteDelHistoricoCommand(Abastecer obj)
         {
-            string res = string.Empty;
-            res = await DisplayActionSheet("Ações", "Cancelar", "", new string[] { "Deletar" });
-            if(!string.IsNullOrEmpty(res))
+            string res = await DisplayActionSheet("Ações", "Cancelar", "", new string[] { "Deletar" });
+            if (!string.IsNullOrEmpty(res))
             {
                 if (res.Equals("Deletar"))
                 {
@@ -76,7 +76,7 @@ namespace AlcoolGasolina.ViewModels.Combustivel
             catch (Exception e)
             {
                 Debug.WriteLine("ERROR LIST HISTORICO: " + e.Message);
-                //throw;
+                Crashes.TrackError(e);
                 ListHistorico = new ObservableCollection<Abastecer>();
             }
 
@@ -95,10 +95,16 @@ namespace AlcoolGasolina.ViewModels.Combustivel
             try
             {
                 await abastecerHistorico.SaveItemAsync(Abastecimento);
+                Microsoft.AppCenter.Analytics.Analytics.TrackEvent("Salvou abastecimento");
             }
             catch (Exception ex)
             {
                 Debug.WriteLine("ERROR SAVING ABASTECER: " + ex.Message);
+                var properties = new Dictionary<string, string>
+                {
+                    { "Abastecimento", Newtonsoft.Json.JsonConvert.SerializeObject(Abastecimento)}
+                };
+                Crashes.TrackError(ex, properties);
                 throw;
             }
             finally

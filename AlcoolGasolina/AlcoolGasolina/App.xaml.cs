@@ -1,5 +1,7 @@
 ﻿using AlcoolGasolina.Views;
-
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using Xamarin.Forms;
 
 namespace AlcoolGasolina
@@ -25,8 +27,12 @@ namespace AlcoolGasolina
 
 		protected override void OnStart ()
 		{
-			// Handle when your app starts
-		}
+            // Handle when your app starts
+            AppCenter.Start("android=8d4d8571-c250-4076-ad31-51890d1ea735;" +
+                  "uwp={Your UWP App secret here};" +
+                  "ios={Your iOS App secret here}",
+                  typeof(Analytics), typeof(Crashes));
+        }
 
 		protected override void OnSleep ()
 		{
