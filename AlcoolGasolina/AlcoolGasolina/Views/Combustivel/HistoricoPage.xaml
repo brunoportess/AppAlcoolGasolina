@@ -2,7 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AlcoolGasolina.Views.Combustivel.HistoricoPage"
-             BackgroundColor="White">
+             xmlns:converters="clr-namespace:AlcoolGasolina.Helpers.Converters;assembly=AlcoolGasolina"
+             BackgroundColor="#CCCCCC">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:StringNullOrEmptyBoolConverter x:Key="StringNullOrEmptyBoolConverter"></converters:StringNullOrEmptyBoolConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <ListView
             Margin="10"
@@ -10,11 +16,11 @@
             CachingStrategy="RecycleElement" 
             SeparatorVisibility="None"
             HasUnevenRows="True"
-            ItemsSource="{Binding ListHistorico, Mode=TwoWay}">
+            ItemsSource="{Binding ListHistorico}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Frame CornerRadius="15" Padding="5" HasShadow="False" Margin="5">
+                        <Frame CornerRadius="15" Padding="5" HasShadow="False" IsClippedToBounds="True" BackgroundColor="#FFFFFF" Margin="5">
                             <FlexLayout Direction="Column">
                                 <FlexLayout.GestureRecognizers>
                                     <TapGestureRecognizer
@@ -40,8 +46,8 @@
                                 <Label>
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="Valor (L): " FontAttributes="Bold" />
-                                            <Span Text="{Binding ValorLitro, StringFormat='R${0}'}" />
+                                            <Span Text="VALOR (L): " FontAttributes="Bold" />
+                                            <Span Text="{Binding ValorLitro, StringFormat='{0:C2}'}" />
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
@@ -49,7 +55,16 @@
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text="VALOR ABASTECIDO: " FontAttributes="Bold" />
-                                            <Span Text="{Binding Valor, StringFormat='R${0}'}"  />
+                                            <Span Text="{Binding Valor, StringFormat='{0:C2}'}"  />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label IsVisible="{Binding Litros,
+                                           Converter={StaticResource StringNullOrEmptyBoolConverter}}">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="LITROS: " FontAttributes="Bold" />
+                                            <Span Text="{Binding Litros, StringFormat='{0:0.###}'}"  />
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>

@@ -22,7 +22,7 @@ namespace AlcoolGasolina
             {
                 BindingContext = new ViewModels.MainViewModel()
             });
-            //MainPage = new MainPage();
+            //MainPage = new AppShell();
         }
 
 		protected override void OnStart ()

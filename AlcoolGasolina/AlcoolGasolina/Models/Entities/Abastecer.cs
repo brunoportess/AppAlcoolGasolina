@@ -12,5 +12,7 @@ namespace AlcoolGasolina.Models.Entities
         public string Combustivel { get; set; }
         public string ValorLitro { get; set; }
         public string Valor { get; set; }
+        public double Litros { get; set; }
+        public double Quilometragem { get; set; }
     }
 }

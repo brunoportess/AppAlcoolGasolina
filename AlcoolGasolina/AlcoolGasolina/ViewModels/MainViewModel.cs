@@ -1,5 +1,6 @@
 ﻿using AlcoolGasolina.Helpers;
 using Plugin.Permissions.Abstractions;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace AlcoolGasolina.ViewModels
@@ -12,6 +13,10 @@ namespace AlcoolGasolina.ViewModels
         public MainViewModel()
         {
             NavegarCommand = new Command<string>(ExecuteNavegarCommand);
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                PermissionStatus status = await Utils.CheckPermissions(Permission.Location);
+            });
         }
 
         private async void ExecuteNavegarCommand(string page)
@@ -40,5 +45,13 @@ namespace AlcoolGasolina.ViewModels
                 await Navigation.PushAsync<CalcularViewModel>();
             }   
         }
+
+        /*public override Task InitializeAsync(object[] args)
+        {
+            Task.Run(async () => {
+                PermissionStatus status = await Utils.CheckPermissions(Permission.Location);
+            });
+            return base.InitializeAsync(args);
+        }*/
     }
 }

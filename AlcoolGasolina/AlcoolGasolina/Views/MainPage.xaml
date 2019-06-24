@@ -4,7 +4,11 @@
              x:Class="AlcoolGasolina.Views.MainPage"
              BackgroundColor="#ffffff"
              xmlns:translator="clr-namespace:AlcoolGasolina.Helpers"
+             xmlns:vms="clr-namespace:AlcoolGasolina.ViewModels; assembly=AlcoolGasolina"
              Padding="10">
+    <ContentPage.BindingContext>
+        <vms:MainViewModel />
+    </ContentPage.BindingContext>
     <NavigationPage.TitleView>
         <Label Text="{translator:Translate Title}" 
                FontSize="Large" TextColor="#FFFFFF" HorizontalTextAlignment="Center" />

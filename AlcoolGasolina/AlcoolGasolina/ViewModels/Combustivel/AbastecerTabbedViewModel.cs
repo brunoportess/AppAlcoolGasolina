@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -83,9 +84,7 @@ namespace AlcoolGasolina.ViewModels.Combustivel
             if (list.Count > 0)
             {
                 ListHistorico = new ObservableCollection<Abastecer>(list);
-                //return new ObservableCollection<Abastecer>(list);
             }
-            //return null;
         }
 
         private async void ExecuteSalvarCommand()
@@ -94,6 +93,10 @@ namespace AlcoolGasolina.ViewModels.Combustivel
             Debug.WriteLine($"ABASTECIMENTO: {Abastecimento}");
             try
             {
+                if(!string.IsNullOrEmpty(Abastecimento.ValorLitro) && !string.IsNullOrEmpty(Abastecimento.Valor))
+                {
+                    Abastecimento.Litros = double.Parse(Abastecimento.Valor) / double.Parse(Abastecimento.ValorLitro);
+                }
                 await abastecerHistorico.SaveItemAsync(Abastecimento);
                 Microsoft.AppCenter.Analytics.Analytics.TrackEvent("Salvou abastecimento");
             }
