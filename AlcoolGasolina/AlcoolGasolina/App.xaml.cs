@@ -17,6 +17,16 @@ namespace AlcoolGasolina
             //LiveReload.Init();
 
             InitializeComponent();
+#if DEBUG
+            //HotReloader.Current.Run(this);
+           /*HotReloader.Current.Run(this, new HotReloader.Configuration
+            {
+                //optionaly you may specify EXTENSION's IP (ExtensionIpAddress) 
+                //in case your PC/laptop and device are in different subnets
+                //e.g. Laptop - 10.10.102.16 AND Device - 10.10.9.12
+                ExtensionIpAddress = System.Net.IPAddress.Parse("192.168.0.50") // use your PC/Laptop IP
+            });*/
+#endif
             AppResources.Culture = Plugin.Multilingual.CrossMultilingual.Current.DeviceCultureInfo;
             MainPage = new NavigationPage(new MainPage()
             {

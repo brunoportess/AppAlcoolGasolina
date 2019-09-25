@@ -117,16 +117,67 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AlcoolText" xml:space="preserve">
+    <value>Alcohol</value>
+  </data>
+  <data name="BotaoCalcular" xml:space="preserve">
+    <value>Calculate</value>
+  </data>
+  <data name="CalcularTitle" xml:space="preserve">
+    <value>Calculate costs</value>
+  </data>
   <data name="Calculate" xml:space="preserve">
     <value>Calculate</value>
   </data>
   <data name="Fuel" xml:space="preserve">
     <value>To Fuel</value>
   </data>
+  <data name="GasolinaText" xml:space="preserve">
+    <value>Gasoline</value>
+  </data>
   <data name="GasStation" xml:space="preserve">
     <value>Nearby Gas Station</value>
   </data>
+  <data name="HistoricDateText" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="HistoricFuelText" xml:space="preserve">
+    <value>Fuel</value>
+  </data>
+  <data name="HistoricLitersText" xml:space="preserve">
+    <value>Liters</value>
+  </data>
+  <data name="HistoricValueText" xml:space="preserve">
+    <value>Price (L)</value>
+  </data>
+  <data name="HistoryText" xml:space="preserve">
+    <value>Historic</value>
+  </data>
+  <data name="PrecoAlcoolText" xml:space="preserve">
+    <value>Alcohol Price</value>
+  </data>
+  <data name="PrecoGasolinaText" xml:space="preserve">
+    <value>Gas Price</value>
+  </data>
+  <data name="SalvarText" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="TipoCombustivelText" xml:space="preserve">
+    <value>Type of fuel</value>
+  </data>
   <data name="Title" xml:space="preserve">
     <value>Alcohol x Gasoline</value>
+  </data>
+  <data name="ValorAbastecidoText" xml:space="preserve">
+    <value>Value suplied</value>
+  </data>
+  <data name="ValorLitroText" xml:space="preserve">
+    <value>Liter value</value>
+  </data>
+  <data name="GasStationGoButton" xml:space="preserve">
+    <value>Go to the nearest</value>
+  </data>
+  <data name="GasStationMapLoad" xml:space="preserve">
+    <value>Loading Gas Station</value>
   </data>
 </root>

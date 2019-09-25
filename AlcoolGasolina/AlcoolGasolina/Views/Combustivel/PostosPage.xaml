@@ -3,17 +3,56 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              x:Class="AlcoolGasolina.Views.Combustivel.PostosPage"
-             Title="Postos próximos">
-    <StackLayout>
-        <ActivityIndicator x:Name="indicator"
-                           IsVisible="True"
-                           IsRunning="True"
-                           HorizontalOptions="Center"
-                           Color="#00796B" />
+             xmlns:translator="clr-namespace:AlcoolGasolina.Helpers"
+             Title="{translator:Translate GasStation}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <StackLayout
+            x:Name="indicatorLayout"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2">
+            <Image
+                x:Name="imageLoading"
+                Source="gasStation.png" />
+            <Label Text="{translator:Translate GasStationMapLoad}" 
+                   FontSize="Title"
+                   TextColor="#00796B"
+                   HorizontalOptions="Center" />
+        </StackLayout>
+        
         <maps:Map 
-                x:Name="MyMap"
-                IsVisible="False"
-                IsShowingUser="true"
-                MapType="Street"/>
-    </StackLayout>
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="2"
+            x:Name="MyMap"
+            IsVisible="False"
+            IsShowingUser="true"
+            MapType="Street"/>
+
+        <Button
+            x:Name="btnPostoProximo"
+            IsVisible="False"
+            Clicked="btnPostoProximo_Clicked"
+            Margin="60,0,60,30"
+            TextColor="#FFFFFF"
+            CornerRadius="30"
+            BackgroundColor="#00796B"
+            Opacity="0.8"
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            FontAttributes="Bold"
+            Text="{translator:Translate GasStationGoButton}"/>
+    </Grid>
 </ContentPage>

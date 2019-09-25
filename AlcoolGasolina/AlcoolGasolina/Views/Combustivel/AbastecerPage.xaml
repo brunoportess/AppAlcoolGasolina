@@ -3,14 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AlcoolGasolina.Views.Combustivel.AbastecerPage"
              xmlns:local="clr-namespace:AlcoolGasolina.Behaviors;assembly=AlcoolGasolina"
+             xmlns:translator="clr-namespace:AlcoolGasolina.Helpers"
              BackgroundColor="White">
     <ContentPage.Content>
         <FlexLayout Direction="Column"
             Margin="10">
-            <Label Text="{Binding Abastecimento.Data, StringFormat='Data: {0}'}"
+            <Label Text="{Binding Abastecimento.Data}"
                    FontSize="Medium"/>
 
-            <Label Text="Tipo de combustível" Style="{StaticResource labelStyle}">
+            <Label Text="{translator:Translate TipoCombustivelText}" Style="{StaticResource labelStyle}">
                 <Label.Margin>
                     <OnPlatform x:TypeArguments="Thickness">
                         <On Platform="iOS" Value="0,0,0,5" />
@@ -19,16 +20,17 @@
                 </Label.Margin>
             </Label>
             <Picker 
+                x:Name="pickerCombustivel"
                 VerticalOptions="End" 
-                Title="Tipo de Combustível"                 
+                Title="{translator:Translate TipoCombustivelText}"                 
                 SelectedItem="{Binding Abastecimento.Combustivel}">
                 <Picker.Items>
-                    <x:String>Álcool</x:String>
-                    <x:String>Gasolina</x:String>
+                    <x:String>{translator:Translate AlcoolText}</x:String>
+                    <x:String>{translator:Translate GasolinaText}</x:String>
                 </Picker.Items>
             </Picker>
 
-            <Label Text="Valor do litro" Style="{StaticResource labelStyle}">
+            <Label Text="{translator:Translate ValorLitroText}" Style="{StaticResource labelStyle}">
                 <Label.Margin>
                     <OnPlatform x:TypeArguments="Thickness">
                         <On Platform="iOS" Value="0,10,0,5" />
@@ -38,13 +40,13 @@
             </Label>
             <Entry Text="{Binding Abastecimento.ValorLitro}"
                    Keyboard="Numeric"
-                   Placeholder="Valor do Litro">
+                   Placeholder="{translator:Translate ValorLitroText}">
                 <Entry.Behaviors>
                     <local:MoneyBehavior />
                 </Entry.Behaviors>
             </Entry>
 
-            <Label Text="Valor abastecido" Style="{StaticResource labelStyle}" >
+            <Label Text="{translator:Translate ValorAbastecidoText}" Style="{StaticResource labelStyle}" >
                 <Label.Margin>
                     <OnPlatform x:TypeArguments="Thickness">
                         <On Platform="iOS" Value="0,10,0,5" />
@@ -55,13 +57,13 @@
             <Entry Text="{Binding Abastecimento.Valor}"
                    Keyboard="Numeric"
                    x:Name="entryValor"
-                   Placeholder="Valor Abastecido">
+                   Placeholder="{translator:Translate ValorAbastecidoText}">
                 <Entry.Behaviors>
                     <local:MoneyBehavior />
                 </Entry.Behaviors>
             </Entry>
-            
-            <Button Text="SALVAR" 
+
+            <Button Text="{translator:Translate SalvarText}" 
                     Command="{Binding SalvarCommand}"
                     Style="{StaticResource buttonStyle}"
                     Margin="0,20,0,0"/>

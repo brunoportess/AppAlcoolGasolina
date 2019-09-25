@@ -61,6 +61,33 @@ namespace AlcoolGasolina {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Alcohol.
+        /// </summary>
+        internal static string AlcoolText {
+            get {
+                return ResourceManager.GetString("AlcoolText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calculate.
+        /// </summary>
+        internal static string BotaoCalcular {
+            get {
+                return ResourceManager.GetString("BotaoCalcular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calculate costs.
+        /// </summary>
+        internal static string CalcularTitle {
+            get {
+                return ResourceManager.GetString("CalcularTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Calculate.
         /// </summary>
         internal static string Calculate {
@@ -79,6 +106,15 @@ namespace AlcoolGasolina {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gasoline.
+        /// </summary>
+        internal static string GasolinaText {
+            get {
+                return ResourceManager.GetString("GasolinaText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nearby Gas Station.
         /// </summary>
         internal static string GasStation {
@@ -88,11 +124,128 @@ namespace AlcoolGasolina {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Go to the nearest.
+        /// </summary>
+        internal static string GasStationGoButton {
+            get {
+                return ResourceManager.GetString("GasStationGoButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loading Gas Station.
+        /// </summary>
+        internal static string GasStationMapLoad {
+            get {
+                return ResourceManager.GetString("GasStationMapLoad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        internal static string HistoricDateText {
+            get {
+                return ResourceManager.GetString("HistoricDateText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fuel.
+        /// </summary>
+        internal static string HistoricFuelText {
+            get {
+                return ResourceManager.GetString("HistoricFuelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Liters.
+        /// </summary>
+        internal static string HistoricLitersText {
+            get {
+                return ResourceManager.GetString("HistoricLitersText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Price (L).
+        /// </summary>
+        internal static string HistoricValueText {
+            get {
+                return ResourceManager.GetString("HistoricValueText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Historic.
+        /// </summary>
+        internal static string HistoryText {
+            get {
+                return ResourceManager.GetString("HistoryText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alcohol Price.
+        /// </summary>
+        internal static string PrecoAlcoolText {
+            get {
+                return ResourceManager.GetString("PrecoAlcoolText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gas Price.
+        /// </summary>
+        internal static string PrecoGasolinaText {
+            get {
+                return ResourceManager.GetString("PrecoGasolinaText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string SalvarText {
+            get {
+                return ResourceManager.GetString("SalvarText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type of fuel.
+        /// </summary>
+        internal static string TipoCombustivelText {
+            get {
+                return ResourceManager.GetString("TipoCombustivelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Alcohol x Gasoline.
         /// </summary>
         internal static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value suplied.
+        /// </summary>
+        internal static string ValorAbastecidoText {
+            get {
+                return ResourceManager.GetString("ValorAbastecidoText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Liter value.
+        /// </summary>
+        internal static string ValorLitroText {
+            get {
+                return ResourceManager.GetString("ValorLitroText", resourceCulture);
             }
         }
     }

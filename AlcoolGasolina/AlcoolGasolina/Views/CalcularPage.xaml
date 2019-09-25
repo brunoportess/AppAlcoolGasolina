@@ -3,10 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AlcoolGasolina.Views.CalcularPage"
              xmlns:local="clr-namespace:AlcoolGasolina.Behaviors;assembly=AlcoolGasolina"
-             Title="Calcular custo">
+             xmlns:translator="clr-namespace:AlcoolGasolina.Helpers"
+             Title="{translator:Translate CalcularTitle}">
     <ContentPage.Content>
         <FlexLayout x:Name="flexteste" Direction="Column" Margin="10">
-            <Label Text="Preço do álcool" Style="{StaticResource labelStyle}">
+            <Label Text="{translator:Translate PrecoAlcoolText}" Style="{StaticResource labelStyle}">
                 <Label.Margin>
                     <OnPlatform x:TypeArguments="Thickness">
                         <On Platform="iOS" Value="0,0,0,5" />
@@ -20,7 +21,7 @@
                 </Entry.Behaviors>
             </Entry>
 
-            <Label  Text="Preço da gasolina" 
+            <Label  Text="{translator:Translate PrecoGasolinaText}" 
                    Style="{StaticResource labelStyle}">
                 <Label.Margin>
                     <OnPlatform x:TypeArguments="Thickness">
@@ -39,7 +40,7 @@
             <Button x:Name="btnCalcular" 
                     Command="{Binding CalcularCommand}"
                     Image="bomba.png"
-                    Text="CALCULAR" 
+                    Text="{translator:Translate BotaoCalcular}" 
                     Style="{StaticResource buttonStyle}"
                     Margin="0,20,0,0"/>
 

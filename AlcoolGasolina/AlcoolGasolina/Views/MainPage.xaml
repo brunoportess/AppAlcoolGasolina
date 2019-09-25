@@ -4,7 +4,7 @@
              x:Class="AlcoolGasolina.Views.MainPage"
              BackgroundColor="#ffffff"
              xmlns:translator="clr-namespace:AlcoolGasolina.Helpers"
-             xmlns:vms="clr-namespace:AlcoolGasolina.ViewModels; assembly=AlcoolGasolina"
+             xmlns:vms="clr-namespace:AlcoolGasolina.ViewModels;assembly=AlcoolGasolina"
              Padding="10">
     <ContentPage.BindingContext>
         <vms:MainViewModel />
@@ -35,7 +35,7 @@
                             HorizontalOptions="Center"/>
                 </StackLayout>
             </Frame>
-            <Frame BackgroundColor="#009688"
+            <Frame BackgroundColor="Green"
                    BorderColor="#009688"
                    HasShadow="False"
                    CornerRadius="15"

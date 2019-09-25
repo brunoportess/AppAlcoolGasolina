@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AlcoolGasolina.Views.Combustivel.HistoricoPage"
              xmlns:converters="clr-namespace:AlcoolGasolina.Helpers.Converters;assembly=AlcoolGasolina"
-             BackgroundColor="#CCCCCC">
+             xmlns:translator="clr-namespace:AlcoolGasolina.Helpers"
+             BackgroundColor="#EEEEEE">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:StringNullOrEmptyBoolConverter x:Key="StringNullOrEmptyBoolConverter"></converters:StringNullOrEmptyBoolConverter>
@@ -30,7 +31,8 @@
                                 <Label>
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="DATA: " FontAttributes="Bold" />
+                                            <Span Text="{translator:Translate HistoricDateText}" FontAttributes="Bold" />
+                                            <Span Text=":   " />
                                             <Span Text="{Binding Data}" />
                                         </FormattedString>
                                     </Label.FormattedText>
@@ -38,7 +40,8 @@
                                 <Label>
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="COMBUSTÍVEL: " FontAttributes="Bold" />
+                                            <Span Text="{translator:Translate HistoricFuelText}" FontAttributes="Bold" />
+                                            <Span Text="   " />
                                             <Span Text="{Binding Combustivel}"  />
                                         </FormattedString>
                                     </Label.FormattedText>
@@ -46,7 +49,8 @@
                                 <Label>
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="VALOR (L): " FontAttributes="Bold" />
+                                            <Span Text="{translator:Translate HistoricValueText}" FontAttributes="Bold" />
+                                            <Span Text=":   " />
                                             <Span Text="{Binding ValorLitro, StringFormat='{0:C2}'}" />
                                         </FormattedString>
                                     </Label.FormattedText>
@@ -54,7 +58,8 @@
                                 <Label>
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="VALOR ABASTECIDO: " FontAttributes="Bold" />
+                                            <Span Text="{translator:Translate ValorAbastecidoText}" FontAttributes="Bold" />
+                                            <Span Text=":   " />
                                             <Span Text="{Binding Valor, StringFormat='{0:C2}'}"  />
                                         </FormattedString>
                                     </Label.FormattedText>
@@ -63,7 +68,8 @@
                                            Converter={StaticResource StringNullOrEmptyBoolConverter}}">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="LITROS: " FontAttributes="Bold" />
+                                            <Span Text="{translator:Translate HistoricLitersText}" FontAttributes="Bold" />
+                                            <Span Text=":   " />
                                             <Span Text="{Binding Litros, StringFormat='{0:0.###}'}"  />
                                         </FormattedString>
                                     </Label.FormattedText>

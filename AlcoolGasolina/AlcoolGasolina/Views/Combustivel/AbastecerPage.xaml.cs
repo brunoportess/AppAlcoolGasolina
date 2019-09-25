@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System.Collections.Generic;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace AlcoolGasolina.Views.Combustivel
@@ -10,6 +11,11 @@ namespace AlcoolGasolina.Views.Combustivel
 		public AbastecerPage()
 		{
 			InitializeComponent ();
+            pickerCombustivel.ItemsSource = new List<string>
+            {
+                AppResources.AlcoolText,
+                AppResources.GasolinaText
+            };
 		}
     }
 }

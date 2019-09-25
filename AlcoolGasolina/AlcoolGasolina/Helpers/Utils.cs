@@ -91,9 +91,9 @@ namespace AlcoolGasolina.Helpers
             }
         }
 
-        public static string Distance(string lat01, string long01, string lat02, string long02)
+        public static double Distance(string lat01, string long01, string lat02, string long02)
         {
-            if (string.IsNullOrEmpty(lat01) || string.IsNullOrEmpty(long01) || string.IsNullOrEmpty(lat02) || string.IsNullOrEmpty(long02)) return null;
+            if (string.IsNullOrEmpty(lat01) || string.IsNullOrEmpty(long01) || string.IsNullOrEmpty(lat02) || string.IsNullOrEmpty(long02)) return 0;
             var lat1 = Convert.ToDouble(lat01.Replace(".", ","), new CultureInfo("pt-BR"));
             var lon1 = Convert.ToDouble(long01.Replace(".", ","), new CultureInfo("pt-BR"));
             var lat2 = Convert.ToDouble(lat02.Replace(".", ","), new CultureInfo("pt-BR"));
@@ -115,7 +115,7 @@ namespace AlcoolGasolina.Helpers
 
             distancia = double.Parse(GatoLouco) / 1000.00 * 1.837979094076655;
 
-            return distancia.ToString("N3") + " km";
+            return distancia;
         }
 
         public static async Task<string> GetCityName(Position location)

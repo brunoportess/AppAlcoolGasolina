@@ -18,7 +18,6 @@ namespace AlcoolGasolina.Models.Database
         {
             database = new SQLiteAsyncConnection(App.DatabasePath);
             await database.CreateTableAsync<Abastecer>();
-
         }
 
         public Task<List<Abastecer>> GetItemsAsync()
