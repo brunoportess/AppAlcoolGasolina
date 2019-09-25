@@ -50,14 +50,14 @@ namespace AlcoolGasolina.ViewModels
             else
             {
                 var res = Math.Round((Convert.ToDouble(ValorAlcool) / Convert.ToDouble(ValorGasolina)), 2);
-                ValorMedia = "A MÉDIA É DE " + res.ToString();
+                ValorMedia = res.ToString();
                 if (res > Convert.ToDouble(0.7))
                 {
-                    Resposta = "ABASTEÇA COM GASOLINA";
+                    Resposta = "USE GASOLINA";
                 }
                 else
                 {
-                    Resposta = "ABASTEÇA COM ÁLCOOL";
+                    Resposta = "USE ÁLCOOL";
                 }
             }
 

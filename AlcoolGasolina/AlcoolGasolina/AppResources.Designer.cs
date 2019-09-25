@@ -214,6 +214,15 @@ namespace AlcoolGasolina {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The Average Is.
+        /// </summary>
+        internal static string TextoValorMediaCalcular {
+            get {
+                return ResourceManager.GetString("TextoValorMediaCalcular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Type of fuel.
         /// </summary>
         internal static string TipoCombustivelText {

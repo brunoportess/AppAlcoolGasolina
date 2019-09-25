@@ -3,8 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AlcoolGasolina.Views.CalcularPage"
              xmlns:local="clr-namespace:AlcoolGasolina.Behaviors;assembly=AlcoolGasolina"
+             xmlns:converters="clr-namespace:AlcoolGasolina.Helpers.Converters;assembly=AlcoolGasolina"
              xmlns:translator="clr-namespace:AlcoolGasolina.Helpers"
              Title="{translator:Translate CalcularTitle}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:StringNullOrEmptyBoolConverter x:Key="StringNullOrEmptyBoolConverter"></converters:StringNullOrEmptyBoolConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <FlexLayout x:Name="flexteste" Direction="Column" Margin="10">
             <Label Text="{translator:Translate PrecoAlcoolText}" Style="{StaticResource labelStyle}">
@@ -44,19 +50,29 @@
                     Style="{StaticResource buttonStyle}"
                     Margin="0,20,0,0"/>
 
-            <Label x:Name="entryValor" 
-                   Margin="0,30,0,0" 
-                   Text="{Binding ValorMedia}" 
-                   FontAttributes="Bold" 
-                   HorizontalTextAlignment="Center" 
-                   FontSize="Default" TextColor="Black"/>
+            <Label
+                FontSize="Large" 
+                FontAttributes="Bold" 
+                 Margin="0,30,0,0" 
+                HorizontalTextAlignment="Center"
+                IsVisible="{Binding ValorMedia,
+                                           Converter={StaticResource StringNullOrEmptyBoolConverter}}"
+                TextColor="Black">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{translator:Translate TextoValorMediaCalcular}"></Span>
+                        <Span Text=" "></Span>
+                        <Span Text="{Binding ValorMedia}" ></Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
 
-            <Label x:Name="entryRes" 
-                   Text="{Binding Resposta}" 
-                   FontAttributes="Bold"  
-                   HorizontalTextAlignment="Center" 
-                   FontSize="Medium" 
-                   TextColor="Black"/>
+            <Label Text="{Binding Resposta}" 
+                    FontSize="Large" 
+                    Margin="0,30,0,0" 
+                   HorizontalTextAlignment="Center"
+                    FontAttributes="Bold" 
+                    TextColor="Black"/>
         </FlexLayout>
     </ContentPage.Content>
 </ContentPage>

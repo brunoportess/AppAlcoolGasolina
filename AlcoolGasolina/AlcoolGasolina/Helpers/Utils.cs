@@ -1,8 +1,6 @@
 ﻿using Microsoft.AppCenter.Crashes;
 using Newtonsoft.Json;
-using Plugin.Geolocator.Abstractions;
-using Plugin.Permissions;
-using Plugin.Permissions.Abstractions;
+using Xamarin.Essentials;
 using System;
 using System.Diagnostics;
 using System.Globalization;
@@ -13,14 +11,10 @@ namespace AlcoolGasolina.Helpers
 {
     public static class Utils
     {
-        public static async Task<Position> GetLocation()
+        public static async Task<Location> GetLocation()
         {
-            //pega a posicao do usuario com o plugin do james
-            var locator = Plugin.Geolocator.CrossGeolocator.Current;
-            //precisão de distancia do gps
-            locator.DesiredAccuracy = 50;
             //pega latitude e longitude
-            var position = await locator.GetPositionAsync(TimeSpan.FromMilliseconds(5000));
+            var position = await Geolocation.GetLocationAsync(new GeolocationRequest(GeolocationAccuracy.Default, TimeSpan.FromMilliseconds(5000)));
             //seta o nome da cidade na variavel
             //var cidade = await GetCityName(position.Latitude.ToString(), position.Longitude.ToString());
             //Debug.WriteLine("Cidade Atual: " + cidade);
@@ -28,18 +22,14 @@ namespace AlcoolGasolina.Helpers
             //return restUtils.GetCityName(Plugin.Geolocator.CrossGeolocator.Current.GetPositionAsync);
         }
 
-        public static async Task<Position> GetLastLocation()
+        public static async Task<Location> GetLastLocation()
         {
-            _ = new Position();
-            Position position;
+            _ = new Location();
+            Location position;
             try
             {
-                //pega a posicao do usuario com o plugin do james
-                var locator = Plugin.Geolocator.CrossGeolocator.Current;
-                //precisão de distancia do gps
-                locator.DesiredAccuracy = 50;
                 //pega latitude e longitude
-                position = await locator.GetLastKnownLocationAsync();
+                position = await Geolocation.GetLastKnownLocationAsync();
             }
             catch (Exception e)
             {
@@ -51,7 +41,7 @@ namespace AlcoolGasolina.Helpers
             return position;
         }
 
-        public static async Task<PermissionStatus> CheckPermissions(Permission permission)
+        /*public static async Task<PermissionStatus> CheckPermissions(Permission permission)
         {
             var status = await CrossPermissions.Current.CheckPermissionStatusAsync(permission);
             if (status != PermissionStatus.Granted)
@@ -89,7 +79,7 @@ namespace AlcoolGasolina.Helpers
                 if (results.ContainsKey(Permission.Storage))
                     _ = results[Permission.Storage];
             }
-        }
+        }*/
 
         public static double Distance(string lat01, string long01, string lat02, string long02)
         {
@@ -118,7 +108,7 @@ namespace AlcoolGasolina.Helpers
             return distancia;
         }
 
-        public static async Task<string> GetCityName(Position location)
+        public static async Task<string> GetCityName(Location location)
         {
             try
             {

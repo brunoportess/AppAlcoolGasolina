@@ -180,4 +180,7 @@
   <data name="GasStationMapLoad" xml:space="preserve">
     <value>Cargando Publicaciones cercanas</value>
   </data>
+  <data name="TextoValorMediaCalcular" xml:space="preserve">
+    <value>El Promedio Es</value>
+  </data>
 </root>

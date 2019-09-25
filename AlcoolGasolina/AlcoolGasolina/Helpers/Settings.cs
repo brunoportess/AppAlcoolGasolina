@@ -1,6 +1,4 @@
 ﻿// Helpers/Settings.cs
-using Plugin.Settings;
-using Plugin.Settings.Abstractions;
 
 namespace AlcoolGasolina.Helpers
 {
@@ -11,20 +9,13 @@ namespace AlcoolGasolina.Helpers
     /// </summary>
     public static class Settings
     {
-        private static ISettings AppSettings
-        {
-            get
-            {
-                return CrossSettings.Current;
-            }
-        }
 
         #region Setting Constants
 
-        private const string GoogleMapsTokenkey = "AIzaSyBbla1DKY6l8d1iZ6JMR5m4gMeda3-8J0I";
+        //private const string GoogleMapsTokenkey = "AIzaSyBbla1DKY6l8d1iZ6JMR5m4gMeda3-8J0I";
         private static readonly string GoogleMapsTokensDefault = "AIzaSyBbla1DKY6l8d1iZ6JMR5m4gMeda3-8J0I";
 
-        private const string GoogleMapsPlacesUrlkey = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?type=gas_station&radius=2000";
+        //private const string GoogleMapsPlacesUrlkey = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?type=gas_station&radius=2000";
         private static readonly string GoogleMapsPlacesUrlDefault = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?type=gas_station&radius=2000";
 
         #endregion
@@ -32,14 +23,14 @@ namespace AlcoolGasolina.Helpers
 
         public static string GoogleMapsToken
         {
-            get => AppSettings.GetValueOrDefault(GoogleMapsTokenkey, GoogleMapsTokensDefault);
-            set => AppSettings.AddOrUpdateValue(GoogleMapsTokenkey, value);
+            get => Xamarin.Essentials.Preferences.Get("GoogleMapsTokenkey", GoogleMapsTokensDefault);
+            set => Xamarin.Essentials.Preferences.Set("GoogleMapsTokenkey", value);
         }
 
         public static string GoogleMapsPlacesUrl
         {
-            get => AppSettings.GetValueOrDefault(GoogleMapsPlacesUrlkey, GoogleMapsPlacesUrlDefault);
-            set => AppSettings.AddOrUpdateValue(GoogleMapsPlacesUrlkey, value);
+            get => Xamarin.Essentials.Preferences.Get("GoogleMapsPlacesUrlkey", GoogleMapsPlacesUrlDefault);
+            set => Xamarin.Essentials.Preferences.Set("GoogleMapsPlacesUrlkey", value);
         }
 
     }

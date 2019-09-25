@@ -1,9 +1,7 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
 using Android.OS;
 using Android.Runtime;
-using Plugin.CurrentActivity;
+using System;
 
 namespace AlcoolGasolina.Droid
 {
@@ -18,7 +16,7 @@ namespace AlcoolGasolina.Droid
         public override void OnCreate()
         {
             base.OnCreate();
-            CrossCurrentActivity.Current.Init(this);
+            //CrossCurrentActivity.Current.Init(this);
             RegisterActivityLifecycleCallbacks(this);
             //A great place to initialize Xamarin.Insights and Dependency Services!
         }
@@ -31,7 +29,7 @@ namespace AlcoolGasolina.Droid
 
         public void OnActivityCreated(Activity activity, Bundle savedInstanceState)
         {
-            CrossCurrentActivity.Current.Activity = activity;
+            //CrossCurrentActivity.Current.Activity = activity;
         }
 
         public void OnActivityDestroyed(Activity activity)
@@ -44,7 +42,7 @@ namespace AlcoolGasolina.Droid
 
         public void OnActivityResumed(Activity activity)
         {
-            CrossCurrentActivity.Current.Activity = activity;
+            //CrossCurrentActivity.Current.Activity = activity;
         }
 
         public void OnActivitySaveInstanceState(Activity activity, Bundle outState)
@@ -53,7 +51,7 @@ namespace AlcoolGasolina.Droid
 
         public void OnActivityStarted(Activity activity)
         {
-            CrossCurrentActivity.Current.Activity = activity;
+            //CrossCurrentActivity.Current.Activity = activity;
         }
 
         public void OnActivityStopped(Activity activity)
