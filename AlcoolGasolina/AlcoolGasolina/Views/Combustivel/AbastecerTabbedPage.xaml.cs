@@ -1,4 +1,5 @@
 ﻿using AlcoolGasolina.ViewModels.Combustivel;
+using AlcoolGasolina.Views.Custom;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -6,7 +7,7 @@ namespace AlcoolGasolina.Views.Combustivel
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     [Xamarin.Forms.Internals.Preserve(AllMembers = true)]
-    public partial class AbastecerTabbedPage : TabbedPage
+    public partial class AbastecerTabbedPage : MyTabbedPage
     {
         readonly AbastecerTabbedViewModel _vm;
         public AbastecerTabbedPage ()

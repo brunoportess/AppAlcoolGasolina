@@ -17,11 +17,12 @@
             CachingStrategy="RecycleElement" 
             SeparatorVisibility="None"
             HasUnevenRows="True"
+            BackgroundColor="#EEEEEE"
             ItemsSource="{Binding ListHistorico}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Frame CornerRadius="15" Padding="5" HasShadow="False" IsClippedToBounds="True" BackgroundColor="#FFFFFF" Margin="5">
+                        <Frame CornerRadius="15" Padding="15" HasShadow="False" IsClippedToBounds="True" BackgroundColor="#FFFFFF" Margin="5">
                             <FlexLayout Direction="Column">
                                 <FlexLayout.GestureRecognizers>
                                     <TapGestureRecognizer

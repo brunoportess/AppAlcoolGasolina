@@ -6,8 +6,9 @@
   <color name="window_background">#F5F5F5</color>
   -->
   <color name="splash_background">#FFFFFF</color>
-  <color name="primary">#009688</color>
-  <color name="primaryDark">#00796B</color>
-  <color name="accent">#4CAF50</color>
+  <color name="primary">#479018</color>
+  <color name="primaryDark">#2c741a</color>
+  <color name="accent">#2c741a</color>
+  <!--<color name="accent">#8dc94d</color>-->
   <color name="window_background">#F5F5F5</color>
 </resources>

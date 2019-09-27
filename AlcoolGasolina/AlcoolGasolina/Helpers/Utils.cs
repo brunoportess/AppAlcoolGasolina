@@ -14,7 +14,7 @@ namespace AlcoolGasolina.Helpers
         public static async Task<Location> GetLocation()
         {
             //pega latitude e longitude
-            var position = await Geolocation.GetLocationAsync(new GeolocationRequest(GeolocationAccuracy.Default, TimeSpan.FromMilliseconds(5000)));
+            var position = await Geolocation.GetLocationAsync(new GeolocationRequest(GeolocationAccuracy.Default, TimeSpan.FromMilliseconds(10000)));
             //seta o nome da cidade na variavel
             //var cidade = await GetCityName(position.Latitude.ToString(), position.Longitude.ToString());
             //Debug.WriteLine("Cidade Atual: " + cidade);

@@ -28,7 +28,7 @@ namespace AlcoolGasolina.Views.Combustivel
             var listaPostos = await restMaps.GetPostoAsync();
             var MyPosition = await Utils.GetLocation();
             await SetMyPosition();
-            if (listaPostos != null)
+            if (listaPostos != null && MyPosition != null)
             {
                 double Distancia = 999;
                 foreach (var obj in listaPostos.results)
@@ -60,6 +60,7 @@ namespace AlcoolGasolina.Views.Combustivel
         private async Task SetMyPosition()
         {
             var myPosition = await Utils.GetLocation();
+            if (myPosition == null) return;
             MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(myPosition.Latitude, myPosition.Longitude), Distance.FromMeters(600)));
             MyMap.IsVisible = true;
             btnPostoProximo.IsVisible = true;

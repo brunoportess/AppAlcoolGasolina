@@ -9,7 +9,8 @@
         <FlexLayout Direction="Column"
             Margin="10">
             <Label Text="{Binding Abastecimento.Data}"
-                   FontSize="Medium"/>
+                   FontSize="Medium"
+                   Margin="0,0,0,15"/>
 
             <Label Text="{translator:Translate TipoCombustivelText}" Style="{StaticResource labelStyle}">
                 <Label.Margin>
