@@ -58,7 +58,5 @@
 	<string>Can we use your location at all times?</string>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
-	<key>UIMainStoryboardFile</key>
-	<string>LaunchScreen</string>
 </dict>
 </plist>

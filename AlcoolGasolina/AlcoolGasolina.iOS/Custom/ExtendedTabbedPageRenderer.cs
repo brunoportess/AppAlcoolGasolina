@@ -1,7 +1,9 @@
-﻿using UIKit;
+﻿using AlcoolGasolina.iOS.Custom;
+using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
+[assembly: ExportRenderer(typeof(AlcoolGasolina.Views.Custom.MyTabbedPage), typeof(ExtendedTabbedPageRenderer))]
 namespace AlcoolGasolina.iOS.Custom
 {
     public class ExtendedTabbedPageRenderer : TabbedRenderer
@@ -15,24 +17,34 @@ namespace AlcoolGasolina.iOS.Custom
             UIColor unselectedColor;
             UIColor selectedTextColor;
             UIColor unselectedTextColor;
+            UIColor backgroundColor;
+            /*
             if (control != null)
-            {
-                selectedColor = control.SelectedIconColor.ToUIColor();
-                unselectedColor = control.UnselectedIconColor.ToUIColor();
-                selectedTextColor = control.SelectedTextColor.ToUIColor();
-                unselectedTextColor = control.UnselectedTextColor.ToUIColor();
+            { 
+            
+                selectedColor = control.SelectedTabColor.ToUIColor();
+                unselectedColor = control.UnselectedTabColor.ToUIColor();
+                selectedTextColor = control.SelectedTabColor.ToUIColor();
+                unselectedTextColor = control.UnselectedTabColor.ToUIColor();
+                backgroundColor = control.BackgroundColor.ToUIColor();
+                
             }
             else
             {
-                selectedColor = UIColor.White;
-                unselectedColor = UIColor.Black;
-                selectedTextColor = UIColor.White;
-                unselectedTextColor = UIColor.White;
+                selectedColor = ExtensionMethods.ToUIColor("#FFFFFF");
+                unselectedColor = ExtensionMethods.ToUIColor("#00796B");
+                selectedTextColor = ExtensionMethods.ToUIColor("#FFFFFF");
+                unselectedTextColor = ExtensionMethods.ToUIColor("#00796B");
+                backgroundColor = ExtensionMethods.ToUIColor("#009688");
             }
-
+            */
+            selectedTextColor = ExtensionMethods.ToUIColor("#009688");
+            unselectedTextColor = ExtensionMethods.ToUIColor("#CCCCCC");
+            selectedColor = ExtensionMethods.ToUIColor("#009688");
+            unselectedColor = ExtensionMethods.ToUIColor("#CCCCCC");
             TabBar.UnselectedItemTintColor = unselectedColor;
             TabBar.SelectedImageTintColor = selectedColor;
-
+            //TabBar.BackgroundColor = UIColor.Red;
 
             var tabs = Element as TabbedPage;
             if (tabs != null)

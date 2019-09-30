@@ -25,7 +25,7 @@
             
             <Frame Grid.Row="0"
                 Style="{StaticResource frameMenuStyle}"
-                   BackgroundColor="#2C741A">
+                   BackgroundColor="#00675b">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
                         Command="{Binding NavegarCommand}" CommandParameter="CalcularPage"/>
@@ -42,7 +42,7 @@
             </Frame>
 
             <Frame Style="{StaticResource frameMenuStyle}"
-                   BackgroundColor="#479018"
+                   BackgroundColor="#009688"
                    Grid.Row="1">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
@@ -60,7 +60,7 @@
             </Frame>
 
             <Frame Style="{StaticResource frameMenuStyle}"
-                   BackgroundColor="#8DC94D"
+                   BackgroundColor="#52c7b8"
                    Grid.Row="2">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer

@@ -5,6 +5,10 @@
 	<Application.Resources>
 
         <ResourceDictionary>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="#009688" />
+                <Setter Property="BarTextColor" Value="#FFFFFF" />
+            </Style>
             <Style TargetType="TabbedPage" x:Key="tabbedPageStyle">
                 <Setter Property="SelectedTabColor" Value="#FFFFFF"/>
                 <Setter Property="UnselectedTabColor" Value="#00796B"/>

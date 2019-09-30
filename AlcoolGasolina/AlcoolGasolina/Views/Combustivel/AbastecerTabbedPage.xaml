@@ -7,7 +7,7 @@
               xmlns:c="clr-namespace:AlcoolGasolina.Views.Custom"
             xmlns:translator="clr-namespace:AlcoolGasolina.Helpers"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-             android:TabbedPage.ToolbarPlacement="Bottom"
+                android:TabbedPage.ToolbarPlacement="Bottom"
                 Style="{StaticResource tabbedPageStyle}"
             >
     <local:AbastecerPage x:Name="abastecer" Title="{translator:Translate Fuel}" Icon="baseline_local_gas_station_white_48.png"/>

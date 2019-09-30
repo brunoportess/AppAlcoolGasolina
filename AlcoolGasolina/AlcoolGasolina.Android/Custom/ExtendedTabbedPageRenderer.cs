@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-
-using Android.App;
+﻿using AlcoolGasolina.Droid.Custom;
+using AlcoolGasolina.Views.Custom;
 using Android.Content;
 using Android.Graphics;
-using Android.OS;
-using Android.Runtime;
 using Android.Support.Design.Widget;
-using Android.Support.V4.Content;
 using Android.Support.V4.View;
 using Android.Views;
-using Android.Widget;
+using System.ComponentModel;
+using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using Xamarin.Forms.Platform.Android.AppCompat;
 
+//[assembly: ExportRenderer(typeof(MyTabbedPage), typeof(ExtendedTabbedPageRenderer))]
 namespace AlcoolGasolina.Droid.Custom
 {
     public class ExtendedTabbedPageRenderer : TabbedPageRenderer
@@ -45,9 +39,9 @@ namespace AlcoolGasolina.Droid.Custom
             else
             {
                 //selectedColor = new Android.Graphics.Color(ContextCompat.GetColor(Context, Resource.Color.tabBarSelected));
-                selectedColor = new Android.Graphics.Color(Color.ParseColor("#FF0000"));
+                selectedColor = new Android.Graphics.Color(Android.Graphics.Color.ParseColor("#FF0000"));
                 //unselectedColor = new Android.Graphics.Color(ContextCompat.GetColor(Context, Resource.Color.tabBarUnselected));
-                unselectedColor = new Android.Graphics.Color(Color.ParseColor("#00FF00"));
+                unselectedColor = new Android.Graphics.Color(Android.Graphics.Color.ParseColor("#00FF00"));
             }
 
             for (int i = 0; i < _layout.TabCount; i++)
