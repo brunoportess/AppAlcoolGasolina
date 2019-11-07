@@ -9,8 +9,12 @@
         <vms:MainViewModel />
     </ContentPage.BindingContext>
     <NavigationPage.TitleView>
-        <Label Text="{translator:Translate Title}" 
-               FontSize="Large" TextColor="#FFFFFF" HorizontalTextAlignment="Center" />
+        <FlexLayout Direction="Row">
+            <Image Source="iconTransparent.png" />
+            <Label Text="{translator:Translate Title}"
+                   VerticalTextAlignment="Center"
+               FontSize="Large" TextColor="#FFFFFF" />
+        </FlexLayout>
     </NavigationPage.TitleView>
     <ContentPage.Content>
         <Grid RowSpacing="0">
@@ -19,63 +23,87 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            
-            <Frame Grid.Row="0"
-                Style="{StaticResource frameMenuStyle}"
-                   BackgroundColor="#00675b">
+
+            <!--
+            <Frame  Grid.Row="0"
+                Style="{StaticResource frameMenuStyle}">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
                         Command="{Binding NavegarCommand}" CommandParameter="CalcularPage"/>
                 </Frame.GestureRecognizers>
-                <StackLayout
-                    VerticalOptions="Center">
-                    <Image Source="calculator.png" />
-                    <Label Text="{translator:Translate Calculate}"
+                <Image Source="gascalculate.png" Aspect="Fill"/>
+            </Frame>
+            -->
+            <Image Grid.Row="0"
+                   Source="gascalculate.png" 
+                   Aspect="Fill">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding NavegarCommand}" CommandParameter="CalcularPage"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Label Text="{translator:Translate Calculate}"
+                   Grid.Row="0"
+                   Margin="0,0,0,15"
+                   VerticalOptions="End"
                             FontSize="Large"
                             FontAttributes="Bold"
                            TextColor="White"
                             HorizontalOptions="Center"/>
-                </StackLayout>
-            </Frame>
 
-            <Frame Style="{StaticResource frameMenuStyle}"
-                   BackgroundColor="#009688"
-                   Grid.Row="1">
+            <!--<Frame Grid.Row="1"
+                   Style="{StaticResource frameMenuStyle}">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
                         Command="{Binding NavegarCommand}" CommandParameter="Combustivel.Postos"/>
                 </Frame.GestureRecognizers>
-                <StackLayout 
-                    VerticalOptions="Center">
-                    <Image Source="gasStation.png" />
-                    <Label Text="{translator:Translate GasStation}"
-                           FontSize="Large"
+                <Image Source="gasmap.png" Aspect="Fill" />
+            </Frame>-->
+            <Image Grid.Row="1"
+                   Source="gasmap.png" 
+                   Aspect="Fill">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding NavegarCommand}" CommandParameter="Combustivel.Postos"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Label Text="{translator:Translate GasStation}"
+                   Grid.Row="1"
+                   Margin="0,0,0,15"
+                   VerticalOptions="End"
+                            FontSize="Large"
+                            FontAttributes="Bold"
                            TextColor="White"
-                           FontAttributes="Bold"
-                           HorizontalOptions="Center"/>
-                </StackLayout>
-            </Frame>
+                            HorizontalOptions="Center"/>
 
-            <Frame Style="{StaticResource frameMenuStyle}"
-                   BackgroundColor="#52c7b8"
-                   Grid.Row="2">
+            <!--<Frame Grid.Row="2"
+                   Style="{StaticResource frameMenuStyle}">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
                         Command="{Binding NavegarCommand}" CommandParameter="Combustivel.AbastecerTabbedPage"/>
                 </Frame.GestureRecognizers>
-                <StackLayout 
-                    VerticalOptions="Center">
-                    <Image Source="gasStation.png" />
-                    <Label Text="{translator:Translate Fuel}"
-                           FontSize="Large"
+                <Image Source="gasfuel.png" Aspect="Fill" />
+            </Frame>-->
+            <Image Grid.Row="2"
+                   Source="gasfuel.png" 
+                   Aspect="Fill">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding NavegarCommand}" CommandParameter="Combustivel.AbastecerTabbedPage"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Label Text="{translator:Translate Fuel}"
+                   Grid.Row="2"
+                   Margin="0,0,0,15"
+                   VerticalOptions="End"
+                            FontSize="Large"
+                            FontAttributes="Bold"
                            TextColor="White"
-                           FontAttributes="Bold"
-                           HorizontalOptions="Center"/>
-                </StackLayout>
-            </Frame>
+                            HorizontalOptions="Center"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

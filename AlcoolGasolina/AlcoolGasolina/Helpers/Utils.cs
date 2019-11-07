@@ -6,42 +6,62 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
+using System.Collections.Generic;
 
 namespace AlcoolGasolina.Helpers
 {
+    [Xamarin.Forms.Internals.Preserve(AllMembers = true)]
     public static class Utils
     {
         public static async Task<Location> GetLocation()
         {
-            //pega latitude e longitude
-            var position = await Geolocation.GetLocationAsync(new GeolocationRequest(GeolocationAccuracy.Default, TimeSpan.FromMilliseconds(10000)));
-            //seta o nome da cidade na variavel
-            //var cidade = await GetCityName(position.Latitude.ToString(), position.Longitude.ToString());
-            //Debug.WriteLine("Cidade Atual: " + cidade);
-            return position;
-            //return restUtils.GetCityName(Plugin.Geolocator.CrossGeolocator.Current.GetPositionAsync);
+            try
+            {
+                //pega latitude e longitude
+                var position = await Geolocation.GetLocationAsync(new GeolocationRequest(GeolocationAccuracy.Default, TimeSpan.FromMilliseconds(5000)));
+                if(position == null)
+                {
+                    var lastPosition = await GetLastLocation();
+                    return lastPosition;
+                }
+                return position;
+            }
+            catch (Exception e)
+            {
+                Crashes.TrackError(e, new Dictionary<string, string>{
+                    { "Classe", "Utils" },
+                    { "Metodo", "GetLocation" },
+                    { "Linha", "31" }
+                });
+                return null;
+                
+            }
         }
 
         public static async Task<Location> GetLastLocation()
         {
-            _ = new Location();
-            Location position;
             try
             {
                 //pega latitude e longitude
-                position = await Geolocation.GetLastKnownLocationAsync();
+                var position = await Geolocation.GetLastKnownLocationAsync();
+                return position;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
 
-                Debug.WriteLine($"ERROR GET LAST LOCATION: {e.Message}");
-                Crashes.TrackError(e);
+                Debug.WriteLine($"ERROR GET LAST LOCATION: {ex.Message}");
+                Crashes.TrackError(ex, new Dictionary<string, string>{
+                    { "Classe", "Utils" },
+                    { "Metodo", "GetLastLocation" },
+                    { "Linha", "55" }
+                });
                 return null;
             }
-            return position;
         }
 
-        /*public static async Task<PermissionStatus> CheckPermissions(Permission permission)
+        public static async Task<PermissionStatus> CheckPermissions(Permission permission)
         {
             var status = await CrossPermissions.Current.CheckPermissionStatusAsync(permission);
             if (status != PermissionStatus.Granted)
@@ -79,7 +99,7 @@ namespace AlcoolGasolina.Helpers
                 if (results.ContainsKey(Permission.Storage))
                     _ = results[Permission.Storage];
             }
-        }*/
+        }
 
         public static double Distance(string lat01, string long01, string lat02, string long02)
         {

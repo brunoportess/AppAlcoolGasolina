@@ -18,12 +18,15 @@ namespace AlcoolGasolina.Views.Combustivel
         {
             InitializeComponent();
             PostoProximo = new Position();
-            Task.Run( async() => await RotateImageContinously());
+            Task.Run( async() => await RotateImageContinously(true));
+            //RotateImageContinously(true);
+            //Task.Run(async () => await SetMapa());
             SetMapa();
         }
 
         private async void SetMapa()
         {
+            
             var restMaps = new RestMaps();
             var listaPostos = await restMaps.GetPostoAsync();
             var MyPosition = await Utils.GetLocation();
@@ -62,9 +65,10 @@ namespace AlcoolGasolina.Views.Combustivel
             var myPosition = await Utils.GetLocation();
             if (myPosition == null) return;
             MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(myPosition.Latitude, myPosition.Longitude), Distance.FromMeters(600)));
+            RotateImageContinously(false);
+            indicatorLayout.IsVisible = false;
             MyMap.IsVisible = true;
             btnPostoProximo.IsVisible = true;
-            indicatorLayout.IsVisible = false;
             var cidade = await Utils.GetCityName(myPosition);
             if(string.IsNullOrEmpty(cidade))
             {
@@ -94,9 +98,9 @@ namespace AlcoolGasolina.Views.Combustivel
             await Xamarin.Essentials.Map.OpenAsync(location, options);
         }
 
-        async Task RotateImageContinously()
+        async Task RotateImageContinously(bool rotate = true)
         {
-            while (indicatorLayout.IsVisible) // a CancellationToken in real life ;-)
+            while (rotate) // a CancellationToken in real life ;-)
             {
                 await imageLoading.RotateYTo(180, 600, Easing.CubicIn);
                 await imageLoading.RotateYTo(360, 600, Easing.CubicOut);

@@ -28,7 +28,7 @@ namespace AlcoolGasolina
             });*/
 #endif
             AppResources.Culture = Plugin.Multilingual.CrossMultilingual.Current.DeviceCultureInfo;
-            MainPage = new NavigationPage(new MainPage()
+            MainPage = new Controls.TransitionNavigationPage(new MainPage()
             {
                 BindingContext = new ViewModels.MainViewModel()
             });

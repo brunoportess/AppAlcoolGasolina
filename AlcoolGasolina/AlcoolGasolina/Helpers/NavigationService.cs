@@ -1,4 +1,5 @@
-﻿using AlcoolGasolina.ViewModels;
+﻿using AlcoolGasolina.Controls;
+using AlcoolGasolina.ViewModels;
 using AlcoolGasolina.Views;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,9 @@ namespace AlcoolGasolina.Helpers
         NavigationService() =>
             mapeamento = new Dictionary<Type, Type>();
 
-        INavigation Navigation => (App.Current.MainPage.GetType() == typeof(NavigationPage) ?
-            ((NavigationPage)App.Current.MainPage).Navigation :
-            ((NavigationPage)((MDPage)App.Current.MainPage).Detail).Navigation);
+        INavigation Navigation => (App.Current.MainPage.GetType() == typeof(TransitionNavigationPage) ?
+            ((TransitionNavigationPage)App.Current.MainPage).Navigation :
+            ((TransitionNavigationPage)((MDPage)App.Current.MainPage).Detail).Navigation);
 
         async Task NavigateTo(Page page)
         {
@@ -116,7 +117,7 @@ namespace AlcoolGasolina.Helpers
 
             if (App.Current.MainPage is null)
             {
-                App.Current.MainPage = new NavigationPage(page);
+                App.Current.MainPage = new TransitionNavigationPage(page);
 
                 (page.BindingContext as BaseViewModel).InitializeAsync(args);
             }

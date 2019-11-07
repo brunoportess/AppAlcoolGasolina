@@ -1,4 +1,5 @@
 ﻿using AlcoolGasolina.Helpers;
+using Plugin.Permissions.Abstractions;
 using Xamarin.Forms;
 
 namespace AlcoolGasolina.ViewModels
@@ -23,7 +24,7 @@ namespace AlcoolGasolina.ViewModels
             {
                 if (page.Equals("Combustivel.Postos"))
                 {
-                    /*PermissionStatus status = await Utils.CheckPermissions(Permission.Location);
+                    PermissionStatus status = await Utils.CheckPermissions(Permission.Location);
                     if (status != PermissionStatus.Granted)
                     {
                         await DisplayAlert("Permissão Negada", "É necessário a permissão para utilizar esta função", "OK");
@@ -31,8 +32,8 @@ namespace AlcoolGasolina.ViewModels
                     else
                     {
                         await Navigation.PushAsync<Combustivel.PostosViewModel>();
-                    }*/
-                    await Navigation.PushAsync<Combustivel.PostosViewModel>();
+                    }
+                    //await Navigation.PushAsync<Combustivel.PostosViewModel>();
                 }
                 else
                 {
