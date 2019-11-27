@@ -25,7 +25,7 @@ namespace AlcoolGasolina.Models.Services
                 
                 var client = new HttpClient
                 {
-                    Timeout = TimeSpan.FromMilliseconds(5000),
+                    Timeout = TimeSpan.FromMilliseconds(10000),
                     //BaseAddress = new Uri(Settings.GoogleMapsPlacesUrl+ "&location=" + _lat + "," + _lng + "&key=" + Settings.GoogleMapsToken)
                 };
                 

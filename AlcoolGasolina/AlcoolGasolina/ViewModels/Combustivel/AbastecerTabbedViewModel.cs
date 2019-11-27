@@ -17,6 +17,7 @@ namespace AlcoolGasolina.ViewModels.Combustivel
         private readonly AbastecerHistorico abastecerHistorico;
         public Command SalvarCommand { get; set; }
         public Command<Abastecer> DelHistoricoCommand { get; set; }
+        public Command RefreshHistoricoCommand { get; set; }
 
         private Abastecer _abastecimento;
         public Abastecer Abastecimento
@@ -24,6 +25,19 @@ namespace AlcoolGasolina.ViewModels.Combustivel
             get { return _abastecimento; }
             set { SetProperty(ref _abastecimento, value); }
         }
+
+        private bool _isRefreshing;
+
+        public bool IsRefreshing
+        {
+            get => _isRefreshing;
+            set
+            {
+                _isRefreshing = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         private ObservableCollection<Abastecer> _listHistorico;
         public ObservableCollection<Abastecer> ListHistorico
@@ -41,6 +55,7 @@ namespace AlcoolGasolina.ViewModels.Combustivel
             abastecerHistorico = new AbastecerHistorico();
             ListHistorico = new ObservableCollection<Abastecer>();
             SalvarCommand = new Command(ExecuteSalvarCommand);
+            RefreshHistoricoCommand = new Command(ExecuteRefreshHistoricoCommand);
             DelHistoricoCommand = new Command<Abastecer>(ExecuteDelHistoricoCommand);
         }
 
@@ -51,6 +66,12 @@ namespace AlcoolGasolina.ViewModels.Combustivel
                 await Dados();
             });
             return base.InitializeAsync(args);
+        }
+
+        private async void ExecuteRefreshHistoricoCommand()
+        {
+            IsRefreshing = true;
+            await Dados();
         }
 
         private async void ExecuteDelHistoricoCommand(Abastecer obj)
@@ -80,11 +101,15 @@ namespace AlcoolGasolina.ViewModels.Combustivel
                 Crashes.TrackError(e);
                 ListHistorico = new ObservableCollection<Abastecer>();
             }
-
-            if (list.Count > 0)
+            finally
             {
-                ListHistorico = new ObservableCollection<Abastecer>(list);
+                IsRefreshing = false;
+                if (list.Count > 0)
+                {
+                    ListHistorico = new ObservableCollection<Abastecer>(list);
+                }
             }
+
         }
 
         private async void ExecuteSalvarCommand()

@@ -1,12 +1,9 @@
-﻿using AlcoolGasolina.Droid.Custom;
-using AlcoolGasolina.Views.Custom;
-using Android.Content;
+﻿using Android.Content;
 using Android.Graphics;
 using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Views;
 using System.ComponentModel;
-using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using Xamarin.Forms.Platform.Android.AppCompat;
 
@@ -15,7 +12,7 @@ namespace AlcoolGasolina.Droid.Custom
 {
     public class ExtendedTabbedPageRenderer : TabbedPageRenderer
     {
-        private bool _isConfigured = false;
+        //private bool _isConfigured = false;
         private ViewPager _pager;
         private TabLayout _layout;
 

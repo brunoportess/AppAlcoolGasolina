@@ -20,7 +20,7 @@ namespace AlcoolGasolina.Helpers
             try
             {
                 //pega latitude e longitude
-                var position = await Geolocation.GetLocationAsync(new GeolocationRequest(GeolocationAccuracy.Default, TimeSpan.FromMilliseconds(5000)));
+                var position = await Geolocation.GetLocationAsync(new GeolocationRequest(GeolocationAccuracy.Default, TimeSpan.FromMilliseconds(10000)));
                 if(position == null)
                 {
                     var lastPosition = await GetLastLocation();
