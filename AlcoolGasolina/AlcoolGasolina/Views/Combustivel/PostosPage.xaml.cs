@@ -1,7 +1,6 @@
 ﻿using AlcoolGasolina.Helpers;
 using AlcoolGasolina.Models.Services;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -20,40 +19,20 @@ namespace AlcoolGasolina.Views.Combustivel
         {
             InitializeComponent();
             PostoProximo = new Position();
-            //Task.Run( async() => await RotateImageContinously(true));
-            RotateImageContinously(true);
-            MainThread.BeginInvokeOnMainThread(MyMainThreadCode);
             
-        }
-        async void MyMainThreadCode()
-        {
-            //            MyPosition = await Utils.GetLocation();
-            //Task.Run(async () => );
-            try
-            {
-                await SetMapa();
-            }
-            catch (System.Exception ex)
-            {
+            Task.Run(() => RotateImageContinously(true));
+            
+            MainThread.BeginInvokeOnMainThread(SetMapa);
 
-                Debug.WriteLine(ex.Message);
-            }
         }
 
-        private async Task SetMapa()
+        private async void SetMapa()
         {
-            //MainThread.BeginInvokeOnMainThread(MyMainThreadCode);
-            //MyPosition = await Utils.GetLocation();
             await SetMyPosition();
             var restMaps = new RestMaps();
 
-            //var MyPosition = await Utils.GetLocation();
-            /*if(MyPosition == null)
-            {
-                await Application.Current.MainPage.DisplayAlert("Que pena!", "Não foi possível localizar a posição do GPS", "OK");
-                await Navigation.PopAsync();
-            }*/
             var listaPostos = await restMaps.GetPostoAsync();
+
             if (listaPostos != null && MyPosition != null)
             {
                 double Distancia = 999;
@@ -80,7 +59,7 @@ namespace AlcoolGasolina.Views.Combustivel
                         }
                     }
                 }
-                RotateImageContinously(false);
+                await RotateImageContinously(false);
             }
             else
             {
@@ -94,10 +73,7 @@ namespace AlcoolGasolina.Views.Combustivel
             MyPosition = await Utils.GetLocation();
             if (MyPosition == null) return;
             MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(MyPosition.Latitude, MyPosition.Longitude), Distance.FromMeters(600)));
-            //RotateImageContinously(false);
-            indicatorLayout.IsVisible = false;
-            MyMap.IsVisible = true;
-            btnPostoProximo.IsVisible = true;
+            
             var cidade = await Utils.GetCityName(MyPosition);
             if(string.IsNullOrEmpty(cidade))
             {
@@ -127,8 +103,11 @@ namespace AlcoolGasolina.Views.Combustivel
             await Xamarin.Essentials.Map.OpenAsync(location, options);
         }
 
-        async void RotateImageContinously(bool rotate = true)
+        async Task RotateImageContinously(bool rotate = true)
         {
+            indicatorLayout.IsVisible = rotate;
+            MyMap.IsVisible = !rotate;
+            btnPostoProximo.IsVisible = !rotate;
             while (rotate) // a CancellationToken in real life ;-)
             {
                 await imageLoading.RotateYTo(180, 600, Easing.CubicIn);
