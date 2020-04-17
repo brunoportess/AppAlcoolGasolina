@@ -2837,10 +2837,13 @@ namespace AlcoolGasolina.Droid
 			public const int ExitToRight = 2130771987;
 			
 			// aapt resource value: 0x7F010014
-			public const int flip_in = 2130771988;
+			public const int fade_in = 2130771988;
 			
 			// aapt resource value: 0x7F010015
-			public const int flip_out = 2130771989;
+			public const int flip_in = 2130771989;
+			
+			// aapt resource value: 0x7F010016
+			public const int flip_out = 2130771990;
 			
 			static Animation()
 			{

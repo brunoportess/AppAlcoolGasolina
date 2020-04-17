@@ -1,5 +1,4 @@
-﻿using AlcoolGasolina.Controls;
-using AlcoolGasolina.ViewModels;
+﻿using AlcoolGasolina.ViewModels;
 using AlcoolGasolina.Views;
 using System;
 using System.Collections.Generic;
@@ -16,9 +15,9 @@ namespace AlcoolGasolina.Helpers
         NavigationService() =>
             mapeamento = new Dictionary<Type, Type>();
 
-        INavigation Navigation => (App.Current.MainPage.GetType() == typeof(TransitionNavigationPage) ?
-            ((TransitionNavigationPage)App.Current.MainPage).Navigation :
-            ((TransitionNavigationPage)((MDPage)App.Current.MainPage).Detail).Navigation);
+        INavigation Navigation => (App.Current.MainPage.GetType() == typeof(NavigationPage) ?
+            ((NavigationPage)App.Current.MainPage).Navigation :
+            ((NavigationPage)((MDPage)App.Current.MainPage).Detail).Navigation);
 
         async Task NavigateTo(Page page)
         {
@@ -52,7 +51,6 @@ namespace AlcoolGasolina.Helpers
             if (viewType == null)
             {
                 var nameSolution = viewModelType.AssemblyQualifiedName.Split('.')[0];
-                var viewName = $"{viewModelTypeName.Replace("ViewModel", "")}Page";
                 var nameDirFile = viewModelType.FullName.Replace($"{nameSolution}.ViewModels.", "");
                 nameDirFile = nameDirFile.Replace("ViewModel", "Page");
                 var viewTypeName = $"{nameSolution}.Views.{nameDirFile}";
@@ -117,7 +115,7 @@ namespace AlcoolGasolina.Helpers
 
             if (App.Current.MainPage is null)
             {
-                App.Current.MainPage = new TransitionNavigationPage(page);
+                App.Current.MainPage = new NavigationPage(page);
 
                 (page.BindingContext as BaseViewModel).InitializeAsync(args);
             }

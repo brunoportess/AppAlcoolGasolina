@@ -2,6 +2,7 @@
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using SQLite;
 using Xamarin.Forms;
 
 namespace AlcoolGasolina
@@ -9,6 +10,8 @@ namespace AlcoolGasolina
     public partial class App : Application
 	{
         public static string DatabasePath => System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData), "TodoSQLite.db3");
+
+        public static SQLiteAsyncConnection database;
 
         public App ()
 		{
@@ -19,16 +22,17 @@ namespace AlcoolGasolina
             InitializeComponent();
 #if DEBUG
             //HotReloader.Current.Run(this);
-           /*HotReloader.Current.Run(this, new HotReloader.Configuration
-            {
-                //optionaly you may specify EXTENSION's IP (ExtensionIpAddress) 
-                //in case your PC/laptop and device are in different subnets
-                //e.g. Laptop - 10.10.102.16 AND Device - 10.10.9.12
-                ExtensionIpAddress = System.Net.IPAddress.Parse("192.168.0.50") // use your PC/Laptop IP
-            });*/
+            /*HotReloader.Current.Run(this, new HotReloader.Configuration
+             {
+                 //optionaly you may specify EXTENSION's IP (ExtensionIpAddress) 
+                 //in case your PC/laptop and device are in different subnets
+                 //e.g. Laptop - 10.10.102.16 AND Device - 10.10.9.12
+                 ExtensionIpAddress = System.Net.IPAddress.Parse("192.168.0.50") // use your PC/Laptop IP
+             });*/
 #endif
+            database = new SQLiteAsyncConnection(DatabasePath);
             AppResources.Culture = Plugin.Multilingual.CrossMultilingual.Current.DeviceCultureInfo;
-            MainPage = new Controls.TransitionNavigationPage(new MainPage()
+            MainPage = new NavigationPage(new MainPage()
             {
                 BindingContext = new ViewModels.MainViewModel()
             });
@@ -47,6 +51,7 @@ namespace AlcoolGasolina
 		protected override void OnSleep ()
 		{
 			// Handle when your app sleeps
+
 		}
 
 		protected override void OnResume ()

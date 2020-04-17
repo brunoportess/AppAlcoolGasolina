@@ -1,12 +1,13 @@
 ﻿using AlcoolGasolina.Models.Entities;
 using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace AlcoolGasolina.Models.Database
 {
     [Xamarin.Forms.Internals.Preserve(AllMembers = true)]
-    public class AbastecerHistorico
+    public class AbastecerHistorico 
     {
         private SQLiteAsyncConnection database;
         public AbastecerHistorico()
@@ -16,7 +17,7 @@ namespace AlcoolGasolina.Models.Database
 
         public async Task Initialize()
         {
-            database = new SQLiteAsyncConnection(App.DatabasePath);
+            database = App.database;
             await database.CreateTableAsync<Abastecer>();
         }
 
@@ -39,6 +40,23 @@ namespace AlcoolGasolina.Models.Database
         public Task<int> DeleteItemAsync(Abastecer item)
         {
             return database.DeleteAsync(item);
+        }
+
+        public async Task DisposeDbConnectionAsync()
+        {
+            if (database != null)
+            {
+                await Task.Factory.StartNew(
+                () =>
+                {
+                    database.GetConnection().Close();
+                    database.GetConnection().Dispose();
+                    database = null;
+
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+                });
+            }
         }
     }
 }
